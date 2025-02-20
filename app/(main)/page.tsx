@@ -1,10 +1,10 @@
-import Hero from '@/components/landing/hero/hero';
-import WhyChoose from '@/components/landing/why-choose/why-choose';
-import HowItWorks from '@/components/landing/how-it-works/how-it-works';
-import InvestmentStrategies from '@/components/landing/investment-strategies/investment-strategies';
-import FAQ from '@/components/landing/faq/faq';
-import { Metadata } from 'next';
-import { redirect } from 'next/navigation';
+import Hero from '@/components/landing/hero/hero'
+import WhyChoose from '@/components/landing/why-choose/why-choose'
+import HowItWorks from '@/components/landing/how-it-works/how-it-works'
+import InvestmentStrategies from '@/components/landing/investment-strategies/investment-strategies'
+import FAQ from '@/components/landing/faq/faq'
+import { Metadata } from 'next'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Prosperia | La plateforme pour investir dans les PME rentables',
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     index: false,
     googleBot: {
       index: false,
-      follow: false,
-    },
-  },
-};
+      follow: false
+    }
+  }
+}
 
 export default function Home() {
-  redirect('https://hub.prosperia-invest.com/fr/prosperia');
+  redirect('https://hub.prosperia-invest.com/fr/prosperia')
   return (
     <main>
       <Hero />
@@ -30,5 +30,5 @@ export default function Home() {
       <InvestmentStrategies />
       <FAQ />
     </main>
-  );
+  )
 }
