@@ -1,47 +1,47 @@
-'use client'
-import { blogSchema, idSchema } from '@/src/lib'
-import { z } from 'zod'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { useParams, useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { Badge } from '@/components/ui/badge'
+'use client';
+import { blogSchema, idSchema } from '@/src/lib';
+import { z } from 'zod';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { useParams, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { Badge } from '@/components/ui/badge';
 
 const BlogDetailPage = () => {
-  const params = useParams()
-  const router = useRouter()
-  const [blog, setBlog] = useState<z.infer<typeof blogSchema> | null>(null)
+  const params = useParams();
+  const router = useRouter();
+  const [blog, setBlog] = useState<z.infer<typeof blogSchema> | null>(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
       if (!params.id) {
-        router.push('/qui-sommes-nous/conseils')
+        router.push('/qui-sommes-nous/conseils');
       } else {
-        const verifyId = idSchema.safeParse(params.id)
+        const verifyId = idSchema.safeParse(params.id);
         if (verifyId.success) {
-          const res = await fetch(`/api/blog/${verifyId.data}`)
-          const data = await res.json()
+          const res = await fetch(`/api/blog/${verifyId.data}`);
+          const data = await res.json();
           if (data.status === 200) {
-            console.log(data.data)
-            setBlog(data.data[0])
+            console.log(data.data);
+            setBlog(data.data[0]);
           } else {
-            router.push('/qui-sommes-nous/conseils')
+            router.push('/qui-sommes-nous/conseils');
           }
         } else {
-          router.push('/qui-sommes-nous/conseils')
+          router.push('/qui-sommes-nous/conseils');
         }
       }
-    }
-    fetchBlog()
-  }, [])
+    };
+    fetchBlog();
+  }, []);
 
   if (!blog) {
     return (
       <div className='min-h-screen flex items-center justify-center bg-gray-100'>
         <div className='max-w-md w-full bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl'></div>
       </div>
-    )
+    );
   } else {
     return (
       <div className='container mx-auto p-4 mt-20'>
@@ -77,8 +77,8 @@ const BlogDetailPage = () => {
           />
         </article>
       </div>
-    )
+    );
   }
-}
+};
 
-export default BlogDetailPage
+export default BlogDetailPage;
