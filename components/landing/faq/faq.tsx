@@ -1,6 +1,8 @@
+import { FaqAccordions } from '@/components/accordion/FaqAccordion'
+import FaqAccordionLoading from '@/components/accordion/FaqAccordionLoading'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { FaqAccordions } from '../accordion/faqAccordion'
+import { Suspense } from 'react'
 
 export default function FAQ() {
   return (
@@ -11,7 +13,9 @@ export default function FAQ() {
             <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>Vous avez des questions ?</h2>
           </div>
           <div className='w-full max-w-3xl mx-auto'>
-            <FaqAccordions page='accueil' />
+            <Suspense fallback={<FaqAccordionLoading />}>
+              <FaqAccordions page={'accueil'} />
+            </Suspense>
           </div>
           <div className='space-y-6 text-center max-w-3xl mx-auto'>
             <h3 className='text-2xl font-bold'>Prêt à investir dans des PME performantes et impactantes ?</h3>

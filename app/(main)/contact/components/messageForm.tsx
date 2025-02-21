@@ -9,6 +9,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { createMessage } from '@/src/actions/support.action'
 
 export const FormMessage = () => {
   const [error, setError] = useState<string | null>(null)
@@ -28,27 +29,11 @@ export const FormMessage = () => {
     const dataValidation = createMessageSchema.safeParse(data)
     if (dataValidation.success) {
       setError(null)
-      const resp = await fetch('/api/message', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataValidation.data)
-      })
-      const result = await resp.json()
-      switch (result.status) {
-        case 201:
-          setIsSend(true)
-          break
-        case 400:
-          setError(result.message)
-          break
-        case 500:
-          setError("Une erreur s'est produite en interne. Veuillez réessayer plus tard.")
-          break
-        default:
-          setError("Une erreur s'est produite en interne. Veuillez réessayer plus tard.")
-          break
+      const resp = await createMessage(dataValidation.data)
+      if (resp) {
+        setIsSend(true)
+      } else {
+        setError("Une erreur est survenue lors de l'envoi du message.")
       }
     } else {
       const err = dataValidation.error.errors[0].message

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { FaqAccordions } from '@/components/landing/accordion/faqAccordion';
+import { Suspense } from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { FaqAccordions } from '@/components/accordion/FaqAccordion'
+import FaqAccordionLoading from '@/components/accordion/FaqAccordionLoading'
 
 const Cedants = () => {
   return (
@@ -13,8 +14,8 @@ const Cedants = () => {
           Cédez votre entreprise en toute sérénité avec Prosperia
         </h1>
         <p className='text-xl text-muted-foreground max-w-3xl mx-auto'>
-          Un processus structuré pour trouver le bon repreneur, sécuriser la
-          transmission et garantir la pérennité de votre entreprise.
+          Un processus structuré pour trouver le bon repreneur, sécuriser la transmission et garantir la pérennité de
+          votre entreprise.
         </p>
         <Button size='lg' className='mt-8'>
           Parler avec un conseiller
@@ -37,17 +38,13 @@ const Cedants = () => {
           <Card>
             <CardContent className='pt-6'>
               <div className='text-3xl font-bold mb-2'>99%</div>
-              <p className='text-muted-foreground'>
-                des cessions financées et finalisées
-              </p>
+              <p className='text-muted-foreground'>des cessions financées et finalisées</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className='pt-6'>
               <div className='text-3xl font-bold mb-2'>500+</div>
-              <p className='text-muted-foreground'>
-                repreneurs sérieux et qualifiés
-              </p>
+              <p className='text-muted-foreground'>repreneurs sérieux et qualifiés</p>
             </CardContent>
           </Card>
         </div>
@@ -61,15 +58,12 @@ const Cedants = () => {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           <Card>
             <CardHeader>
-              <CardTitle className='text-xl'>
-                Sélection des repreneurs
-              </CardTitle>
+              <CardTitle className='text-xl'>Sélection des repreneurs</CardTitle>
             </CardHeader>
             <CardContent>
               <p className='text-muted-foreground'>
-                Nous identifions et validons les candidats selon leur profil,
-                leur capacité financière et leur adéquation avec votre vision
-                d&apos;entreprise.
+                Nous identifions et validons les candidats selon leur profil, leur capacité financière et leur
+                adéquation avec votre vision d&apos;entreprise.
               </p>
             </CardContent>
           </Card>
@@ -79,9 +73,8 @@ const Cedants = () => {
             </CardHeader>
             <CardContent>
               <p className='text-muted-foreground'>
-                Grâce à notre réseau d&apos;investisseurs et de partenaires
-                bancaires, nous trouvons les solutions financières adaptées pour
-                maximiser votre valorisation.
+                Grâce à notre réseau d&apos;investisseurs et de partenaires bancaires, nous trouvons les solutions
+                financières adaptées pour maximiser votre valorisation.
               </p>
             </CardContent>
           </Card>
@@ -91,9 +84,8 @@ const Cedants = () => {
             </CardHeader>
             <CardContent>
               <p className='text-muted-foreground'>
-                De l&apos;évaluation de votre entreprise à la finalisation du
-                deal, nous vous guidons à chaque étape pour garantir une
-                transmission en toute confiance.
+                De l&apos;évaluation de votre entreprise à la finalisation du deal, nous vous guidons à chaque étape
+                pour garantir une transmission en toute confiance.
               </p>
             </CardContent>
           </Card>
@@ -105,16 +97,12 @@ const Cedants = () => {
 
       {/* How it Works Section */}
       <section>
-        <h2 className='text-3xl font-bold text-center mb-12'>
-          Vendre votre entreprise au bon repreneur, au bon prix
-        </h2>
+        <h2 className='text-3xl font-bold text-center mb-12'>Vendre votre entreprise au bon repreneur, au bon prix</h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           <Card>
             <CardHeader>
               <Badge className='w-fit mb-4 text-white'>Étape 1</Badge>
-              <CardTitle className='text-xl'>
-                Valorisation juste et solide
-              </CardTitle>
+              <CardTitle className='text-xl'>Valorisation juste et solide</CardTitle>
             </CardHeader>
             <CardContent className='space-y-4'>
               <ul className='space-y-2 text-muted-foreground'>
@@ -127,9 +115,7 @@ const Cedants = () => {
           <Card>
             <CardHeader>
               <Badge className='w-fit mb-4 text-white'>Étape 2</Badge>
-              <CardTitle className='text-xl'>
-                Sélection du repreneur idéal
-              </CardTitle>
+              <CardTitle className='text-xl'>Sélection du repreneur idéal</CardTitle>
             </CardHeader>
             <CardContent className='space-y-4'>
               <ul className='space-y-2 text-muted-foreground'>
@@ -154,25 +140,21 @@ const Cedants = () => {
           </Card>
         </div>
         <div className='text-center mt-8'>
-          <Button size='lg'>
-            Être accompagné dans la vente de mon entreprise
-          </Button>
+          <Button size='lg'>Être accompagné dans la vente de mon entreprise</Button>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section>
-        <h2 className='text-3xl font-bold text-center mb-12'>
-          Vous avez des questions ? Nous avons les réponses.
-        </h2>
-        <FaqAccordions page='cedant' />
+        <h2 className='text-3xl font-bold text-center mb-12'>Vous avez des questions ? Nous avons les réponses.</h2>
+        <Suspense fallback={<FaqAccordionLoading />}>
+          <FaqAccordions page={'cedant'} />
+        </Suspense>
       </section>
 
       {/* Final CTA */}
       <section className='text-center space-y-6'>
-        <h2 className='text-3xl font-bold'>
-          Vous souhaitez céder votre entreprise en toute sérénité ?
-        </h2>
+        <h2 className='text-3xl font-bold'>Vous souhaitez céder votre entreprise en toute sérénité ?</h2>
         <Button size='lg'>Parler avec un conseiller</Button>
         <div className='flex justify-center gap-8 mt-8'>
           <div className='flex items-center gap-2'>
@@ -182,14 +164,12 @@ const Cedants = () => {
             <span className='text-muted-foreground'>✨ Repreneurs fiables</span>
           </div>
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground'>
-              👥 Accompagnement expert
-            </span>
+            <span className='text-muted-foreground'>👥 Accompagnement expert</span>
           </div>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Cedants;
+export default Cedants

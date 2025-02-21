@@ -1,8 +1,21 @@
-import ClientWrapper from './ClientWrapper';
+import { isUserSuperAdmin } from '@/src/actions/admin.action'
+import AdminUserHeader from './components/AdminUserHeader'
+import AdminUserTable from './components/AdminUserTable'
+import { getAllUsersCached } from './users.fetch'
+import { redirect } from 'next/navigation'
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+const AdminUserPage = async () => {
+  const users = await getAllUsersCached()
 
-export default function UsersPage() {
-  return <ClientWrapper />;
+  if (!(await isUserSuperAdmin())) {
+    redirect('/dashboard')
+  }
+  return (
+    <div className='space-y-4'>
+      <AdminUserHeader />
+      <AdminUserTable users={users} />
+    </div>
+  )
 }
+
+export default AdminUserPage

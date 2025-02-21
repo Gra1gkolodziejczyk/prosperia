@@ -1,109 +1,88 @@
-'use client'
+import { DragDropContext, Draggable, Droppable, DropResult } from '@hello-pangea/dnd'
+import { GripVertical } from 'lucide-react'
+import { Card } from '@/components/ui/card'
+import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table } from '@/components/ui/table'
+import { FAQType } from '@/src/interfaces/faq'
+import AdminFAQTableSelectButton from './AdminFAQTableSelectButton'
+import { changeFAQOrder } from '@/src/actions/faq.action'
+import { useEffect, useState } from 'react'
 
-import { DragDropContext, Droppable, Draggable } from '@hello-pangea/dnd'
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
-import { cn } from '@/src/lib'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[]
-  data: TData[]
-  onDragEnd?: (result: unknown) => void
-  onDelete?: (id: string) => void
+type AdminFAQTableProps = {
+  faqs: FAQType[]
 }
 
-export const AdminFAQTable = <TData, TValue>({
-  columns,
-  data,
-  onDragEnd = () => {}
-}: DataTableProps<TData, TValue>) => {
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel()
-  })
+const AdminFAQTable = ({ faqs }: AdminFAQTableProps) => {
+  const [faqlist, setFaqlist] = useState<FAQType[]>(faqs)
+
+  useEffect(() => {
+    setFaqlist(faqs)
+  }, [faqs])
+
+  const onDragEnd = async (result: DropResult) => {
+    if (!result.destination) return
+    const items = Array.from(faqs)
+    const [reorderedItem] = items.splice(result.source.index, 1)
+    items.splice(result.destination.index, 0, reorderedItem)
+    const updatedFaqs = items.map((item, index) => ({
+      ...item,
+      orderId: index
+    }))
+    setFaqlist(updatedFaqs)
+    const resp = await changeFAQOrder(updatedFaqs)
+    if (resp) {
+      console.log('FAQs reordered')
+    } else {
+      console.log('Error reordering FAQs')
+    }
+  }
 
   return (
-    <div className='rounded-md border'>
+    <Card className='px-4'>
       <DragDropContext onDragEnd={onDragEnd}>
-        <Table className='w-full table-auto'>
+        <Table className='mx-auto'>
           <TableHeader>
-            {table.getHeaderGroups().map(headerGroup => (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map(header => {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      className={cn(
-                        'truncate whitespace-nowrap overflow-hidden',
-                        header.column.id === 'id' && 'w-[15px]',
-                        header.column.id === 'question' && 'max-w-[250px] min-w-[150px]',
-                        header.column.id === 'answer' &&
-                          'w-full max-w-[200px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[600px]',
-                        header.column.id === 'createdAt' && 'w-[25px]',
-                        header.column.id === 'actions' && 'w-[10px]'
-                      )}>
-                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableHead>
-                  )
-                })}
-              </TableRow>
-            ))}
+            <TableRow>
+              <TableHead></TableHead>
+              <TableHead>Question</TableHead>
+              <TableHead>Réponse</TableHead>
+              <TableHead></TableHead>
+            </TableRow>
           </TableHeader>
-
-          <Droppable droppableId='table'>
+          <Droppable droppableId='faqs'>
             {provided => (
-              <TableBody ref={provided.innerRef} {...provided.droppableProps}>
-                {table.getRowModel().rows?.length ? (
-                  table.getRowModel().rows.map((row, index) => (
-                    <Draggable key={row.id} draggableId={row.id} index={index}>
-                      {provided => (
-                        <TableRow
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          data-state={row.getIsSelected() && 'selected'}
-                          className='h-12'>
-                          {row.getVisibleCells().map(cell => {
-                            const formatedDate =
-                              cell.column.id === 'createdAt'
-                                ? new Date(cell.getValue() as string).toLocaleDateString('fr-FR')
-                                : null
-                            return (
-                              <TableCell
-                                key={cell.id}
-                                className={cn(
-                                  'truncate whitespace-nowrap overflow-hidden',
-                                  cell.column.id === 'id' && 'w-[15px]',
-                                  cell.column.id === 'question' && 'max-w-[250px] min-w-[150px]',
-                                  cell.column.id === 'answer' &&
-                                    'w-full max-w-[200px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[600px]',
-                                  cell.column.id === 'createdAt' && '-w-[25px]',
-                                  cell.column.id === 'actions' && 'w-[10px]'
-                                )}>
-                                {cell.column.id === 'createdAt'
-                                  ? formatedDate
-                                  : flexRender(cell.column.columnDef.cell, cell.getContext())}
-                              </TableCell>
-                            )
-                          })}
-                        </TableRow>
-                      )}
-                    </Draggable>
-                  ))
-                ) : (
-                  <TableRow>
-                    <TableCell colSpan={columns.length} className='h-24 text-center'>
-                      Aucun Résultat
-                    </TableCell>
-                  </TableRow>
-                )}
+              <TableBody {...provided.droppableProps} ref={provided.innerRef}>
+                {faqlist.map((faq, index) => (
+                  <Draggable key={faq.id} draggableId={faq.id} index={index}>
+                    {provided => (
+                      <TableRow
+                        key={faq.id}
+                        className='h-16 overflow-hidden'
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}>
+                        <TableCell className='w-[15px]' {...provided.dragHandleProps}>
+                          <GripVertical className='w-6 h-6 text-gray-400' />
+                        </TableCell>
+                        <TableCell className='truncate whitespace-nowrap overflow-hidden max-w-[250px] min-w-[150px]'>
+                          {faq.question}
+                        </TableCell>
+                        <TableCell className='text-start lowercase truncate whitespace-nowrap overflow-hidden w-full max-w-[50px] sm:max-w-[150px] md:max-w-[250px] lg:max-w-[650px]'>
+                          {faq.answer}
+                        </TableCell>
+                        <TableCell>
+                          <AdminFAQTableSelectButton faq={faq} />
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </Draggable>
+                ))}
                 {provided.placeholder}
               </TableBody>
             )}
           </Droppable>
         </Table>
       </DragDropContext>
-    </div>
+    </Card>
   )
 }
+
+export default AdminFAQTable

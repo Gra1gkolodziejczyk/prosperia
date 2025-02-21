@@ -1,8 +1,12 @@
-import ClientWrapper from './ClientWrapper';
+import { redirect } from 'next/navigation'
+import { isUserAdmin } from '@/src/actions/admin.action'
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
-export default function DashboardPage() {
-  return <ClientWrapper />;
+const DashboardPage = async () => {
+  if (!(await isUserAdmin())) {
+    redirect('/')
+  } else {
+    redirect('/dashboard/support')
+  }
 }
+
+export default DashboardPage

@@ -1,8 +1,9 @@
-import React from 'react';
-import { Metadata } from 'next';
-import { FaqAccordions } from './components/faqAccordions';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import { Suspense } from 'react'
+import { Metadata } from 'next'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
+import { FaqAccordions } from '@/components/accordion/FaqAccordion'
+import FaqAccordionLoading from '@/components/accordion/FaqAccordionLoading'
 
 export const metadata: Metadata = {
   title: 'FAQ | Prosperia',
@@ -12,10 +13,10 @@ export const metadata: Metadata = {
     index: false,
     googleBot: {
       index: false,
-      follow: false,
-    },
-  },
-};
+      follow: false
+    }
+  }
+}
 
 const FAQ = () => {
   return (
@@ -28,17 +29,15 @@ const FAQ = () => {
       </p>
 
       <div className='max-w-3xl mx-auto'>
-        <FaqAccordions />
+        <Suspense fallback={<FaqAccordionLoading />}>
+          <FaqAccordions page={'faq'} />
+        </Suspense>
       </div>
 
       {/* Section de contact supplémentaire */}
       <div className='mt-16 text-center'>
-        <h2 className='text-2xl font-semibold mb-4'>
-          Vous n&apos;avez pas trouvé votre réponse ?
-        </h2>
-        <p className='text-muted-foreground mb-6'>
-          Notre équipe est là pour vous aider avec toutes vos questions
-        </p>
+        <h2 className='text-2xl font-semibold mb-4'>Vous n&apos;avez pas trouvé votre réponse ?</h2>
+        <p className='text-muted-foreground mb-6'>Notre équipe est là pour vous aider avec toutes vos questions</p>
         <Link href={'/contact'}>
           <Button className='bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-3 rounded-lg font-medium'>
             Contactez-nous
@@ -46,7 +45,7 @@ const FAQ = () => {
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FAQ;
+export default FAQ

@@ -1,11 +1,12 @@
-import React from 'react';
+import { Suspense } from 'react'
 // import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Metadata } from 'next';
-import { FaqAccordions } from '@/components/landing/accordion/faqAccordion';
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Metadata } from 'next'
+import { FaqAccordions } from '@/components/accordion/FaqAccordion'
+import FaqAccordionLoading from '@/components/accordion/FaqAccordionLoading'
 
 export const metadata: Metadata = {
   title: 'Prosperia | Comment ça marche',
@@ -16,10 +17,10 @@ export const metadata: Metadata = {
     index: false,
     googleBot: {
       index: false,
-      follow: false,
-    },
-  },
-};
+      follow: false
+    }
+  }
+}
 
 const CommentCaMarche = () => {
   return (
@@ -32,8 +33,7 @@ const CommentCaMarche = () => {
               Investissez dans la transmission des PME en toute simplicité
             </h1>
             <p className='text-xl text-muted-foreground max-w-3xl mx-auto'>
-              Un accompagnement clé en main pour financer les PME et sécuriser
-              votre investissement.
+              Un accompagnement clé en main pour financer les PME et sécuriser votre investissement.
             </p>
             <Button size='lg' className='mt-8'>
               Je découvre les opportunités d&apos;investissement
@@ -44,9 +44,7 @@ const CommentCaMarche = () => {
               <Card>
                 <CardContent className='pt-6'>
                   <div className='text-3xl font-bold mb-2'>100M€+</div>
-                  <p className='text-muted-foreground'>
-                    d&apos;investissements déjà engagés
-                  </p>
+                  <p className='text-muted-foreground'>d&apos;investissements déjà engagés</p>
                 </CardContent>
               </Card>
               <Card>
@@ -64,9 +62,7 @@ const CommentCaMarche = () => {
               <Card>
                 <CardContent className='pt-6'>
                   <div className='text-3xl font-bold mb-2'>20+</div>
-                  <p className='text-muted-foreground'>
-                    experts du Private Equity
-                  </p>
+                  <p className='text-muted-foreground'>experts du Private Equity</p>
                 </CardContent>
               </Card>
             </div>
@@ -85,16 +81,12 @@ const CommentCaMarche = () => {
 
           {/* Comment ça marche Section */}
           <section>
-            <h2 className='text-3xl font-bold text-center mb-12'>
-              Une démarche claire et rapide en 3 étapes
-            </h2>
+            <h2 className='text-3xl font-bold text-center mb-12'>Une démarche claire et rapide en 3 étapes</h2>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
               <Card>
                 <CardHeader>
                   <Badge className='w-fit mb-4 text-white'>Étape 1</Badge>
-                  <CardTitle className='text-xl'>
-                    Découvrez les opportunités disponibles
-                  </CardTitle>
+                  <CardTitle className='text-xl'>Découvrez les opportunités disponibles</CardTitle>
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   <ul className='space-y-2 text-muted-foreground'>
@@ -107,9 +99,7 @@ const CommentCaMarche = () => {
               <Card>
                 <CardHeader>
                   <Badge className='w-fit mb-4 text-white'>Étape 2</Badge>
-                  <CardTitle className='text-xl'>
-                    Investissez en quelques clics
-                  </CardTitle>
+                  <CardTitle className='text-xl'>Investissez en quelques clics</CardTitle>
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   <ul className='space-y-2 text-muted-foreground'>
@@ -122,9 +112,7 @@ const CommentCaMarche = () => {
               <Card>
                 <CardHeader>
                   <Badge className='w-fit mb-4 text-white'>Étape 3</Badge>
-                  <CardTitle className='text-xl'>
-                    Suivez et optimisez votre investissement
-                  </CardTitle>
+                  <CardTitle className='text-xl'>Suivez et optimisez votre investissement</CardTitle>
                 </CardHeader>
                 <CardContent className='space-y-4'>
                   <ul className='space-y-2 text-muted-foreground'>
@@ -136,9 +124,7 @@ const CommentCaMarche = () => {
               </Card>
             </div>
             <div className='text-center mt-8'>
-              <Button size='lg'>
-                Je découvre les opportunités d&apos;investissement
-              </Button>
+              <Button size='lg'>Je découvre les opportunités d&apos;investissement</Button>
             </div>
           </section>
 
@@ -150,12 +136,8 @@ const CommentCaMarche = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
               <Card className='flex flex-col'>
                 <CardHeader className='flex-none'>
-                  <CardTitle className='text-2xl mb-4'>
-                    CAP-Développement
-                  </CardTitle>
-                  <p className='text-muted-foreground'>
-                    Soutenez la transmission et la modernisation des PME
-                  </p>
+                  <CardTitle className='text-2xl mb-4'>CAP-Développement</CardTitle>
+                  <p className='text-muted-foreground'>Soutenez la transmission et la modernisation des PME</p>
                 </CardHeader>
                 <CardContent className='flex-grow flex flex-col justify-between space-y-6'>
                   <ul className='space-y-4'>
@@ -187,9 +169,7 @@ const CommentCaMarche = () => {
               <Card className='flex flex-col'>
                 <CardHeader className='flex-none'>
                   <CardTitle className='text-2xl mb-4'>Prime</CardTitle>
-                  <p className='text-muted-foreground'>
-                    Investissez aux côtés des plus grands fonds
-                  </p>
+                  <p className='text-muted-foreground'>Investissez aux côtés des plus grands fonds</p>
                 </CardHeader>
                 <CardContent className='flex-grow flex flex-col justify-between space-y-6'>
                   <ul className='space-y-4'>
@@ -232,12 +212,8 @@ const CommentCaMarche = () => {
                     🔍
                   </div>
                   <div>
-                    <h3 className='font-semibold mb-2'>
-                      Sélection rigoureuse des PME
-                    </h3>
-                    <p className='text-muted-foreground'>
-                      Analyse financière & due diligence approfondie
-                    </p>
+                    <h3 className='font-semibold mb-2'>Sélection rigoureuse des PME</h3>
+                    <p className='text-muted-foreground'>Analyse financière & due diligence approfondie</p>
                   </div>
                 </div>
                 <div className='flex items-start gap-4'>
@@ -246,9 +222,7 @@ const CommentCaMarche = () => {
                   </div>
                   <div>
                     <h3 className='font-semibold mb-2'>Transparence totale</h3>
-                    <p className='text-muted-foreground'>
-                      Accès aux documents juridiques et financiers
-                    </p>
+                    <p className='text-muted-foreground'>Accès aux documents juridiques et financiers</p>
                   </div>
                 </div>
               </div>
@@ -259,9 +233,7 @@ const CommentCaMarche = () => {
                   </div>
                   <div>
                     <h3 className='font-semibold mb-2'>Agrément en cours</h3>
-                    <p className='text-muted-foreground'>
-                      Conformité avec la réglementation européenne
-                    </p>
+                    <p className='text-muted-foreground'>Conformité avec la réglementation européenne</p>
                   </div>
                 </div>
                 <div className='flex items-start gap-4'>
@@ -269,12 +241,8 @@ const CommentCaMarche = () => {
                     👥
                   </div>
                   <div>
-                    <h3 className='font-semibold mb-2'>
-                      Accompagnement expert
-                    </h3>
-                    <p className='text-muted-foreground'>
-                      Des professionnels du Private Equity à vos côtés
-                    </p>
+                    <h3 className='font-semibold mb-2'>Accompagnement expert</h3>
+                    <p className='text-muted-foreground'>Des professionnels du Private Equity à vos côtés</p>
                   </div>
                 </div>
               </div>
@@ -283,40 +251,32 @@ const CommentCaMarche = () => {
 
           {/* FAQ Section */}
           <section>
-            <h2 className='text-3xl font-bold text-center mb-12'>
-              Les réponses aux questions les plus fréquentes
-            </h2>
-            <FaqAccordions page='comment-ca-marche' />
+            <h2 className='text-3xl font-bold text-center mb-12'>Les réponses aux questions les plus fréquentes</h2>
+            <Suspense fallback={<FaqAccordionLoading />}>
+              <FaqAccordions page={'comment-ca-marche'} />
+            </Suspense>
           </section>
 
           {/* Final CTA */}
           <section className='text-center space-y-6'>
-            <h2 className='text-3xl font-bold'>
-              Prêt à investir dans des PME rentables et impactantes ?
-            </h2>
+            <h2 className='text-3xl font-bold'>Prêt à investir dans des PME rentables et impactantes ?</h2>
             <Button size='lg'>Je découvre les opportunités</Button>
             <div className='flex justify-center gap-8 mt-8'>
               <div className='flex items-center gap-2'>
-                <span className='text-muted-foreground'>
-                  🔒 Processus sécurisé
-                </span>
+                <span className='text-muted-foreground'>🔒 Processus sécurisé</span>
               </div>
               <div className='flex items-center gap-2'>
-                <span className='text-muted-foreground'>
-                  ✨ Opportunités triées
-                </span>
+                <span className='text-muted-foreground'>✨ Opportunités triées</span>
               </div>
               <div className='flex items-center gap-2'>
-                <span className='text-muted-foreground'>
-                  👥 Accompagnement expert
-                </span>
+                <span className='text-muted-foreground'>👥 Accompagnement expert</span>
               </div>
             </div>
           </section>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CommentCaMarche;
+export default CommentCaMarche

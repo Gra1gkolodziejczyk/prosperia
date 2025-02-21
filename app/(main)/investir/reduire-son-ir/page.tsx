@@ -1,9 +1,10 @@
+import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { CheckCircle2, FileText, Target, TrendingUp, Info, AlertCircle, BarChart, Shield } from 'lucide-react'
-import React from 'react'
-import { FaqAccordions } from '@/components/landing/accordion/faqAccordion'
+import { FaqAccordions } from '@/components/accordion/FaqAccordion'
+import FaqAccordionLoading from '@/components/accordion/FaqAccordionLoading'
 // import Image from 'next/image';
 
 const ReduireSonImpotSurLeRevenue = () => {
@@ -332,7 +333,9 @@ const ReduireSonImpotSurLeRevenue = () => {
       <section className='py-20 px-4'>
         <div className='max-w-5xl mx-auto'>
           <h2 className='text-3xl font-bold text-center mb-12'>FAQ : les réponses à vos questions sur l&apos;IR PME</h2>
-          <FaqAccordions page='reduire-ir' />
+          <Suspense fallback={<FaqAccordionLoading />}>
+            <FaqAccordions page={'reduire-ir'} />
+          </Suspense>
         </div>
       </section>
 

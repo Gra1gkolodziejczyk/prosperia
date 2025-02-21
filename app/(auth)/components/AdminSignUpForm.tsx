@@ -1,26 +1,25 @@
 'use client'
 
-import { z } from 'zod'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { authClient } from '@/src/lib/auth-client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { invitationSchema, registerSchema } from '@/src/lib'
-import { useRouter } from 'next/navigation'
-import { toast } from 'sonner'
+import { registerSchema } from '@/src/lib'
+import { setUsedInvitation } from '@/src/actions/invitation.action'
+import { InvitationType } from '@/src/interfaces/invitation'
 
-type InvitationData = z.infer<typeof invitationSchema>
-
-type SignUpProps = {
-  invit: InvitationData
+type AdminSignUpFormProps = {
+  invit: InvitationType
 }
 
-export function AdminSignUpForm({ invit }: SignUpProps) {
+const AdminSignUpForm = ({ invit }: AdminSignUpFormProps) => {
   const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState<boolean>(false)
   const router = useRouter()
 
   const form = useForm<z.infer<typeof registerSchema>>({
@@ -32,7 +31,6 @@ export function AdminSignUpForm({ invit }: SignUpProps) {
   })
 
   async function onSubmit(values: z.infer<typeof registerSchema>) {
-    setLoading(true)
     try {
       setError(null)
       const verifyValues = registerSchema.safeParse(values)
@@ -41,13 +39,12 @@ export function AdminSignUpForm({ invit }: SignUpProps) {
           email: invit.email,
           password: values.password,
           name: values.name,
-          role: 'admin'
+          role: invit.role
         })
         if (error) {
           switch (error.status) {
             case 401:
               setError("Une erreur s'est produite lors de la création du compte. Veuillez réessayer.")
-
               break
             case 422:
               setError('Adresse email déjà utilisée.')
@@ -59,22 +56,14 @@ export function AdminSignUpForm({ invit }: SignUpProps) {
           }
         } else {
           toast.success('Compte créé avec succès. Veuillez vous connecter.')
-          const resUsedInvite = await fetch(`/api/invitation/${invit.id}`, {
-            method: 'PUT'
-          })
-          const respUsedInvite = await resUsedInvite.json()
-          if (respUsedInvite.status === 200) {
-            router.push('/admin/sign-in')
-          } else {
-            toast.error('Invitation non trouvée')
-          }
+          await setUsedInvitation(invit.id)
+          router.push('/login')
         }
       }
     } catch (err) {
-      const error = err as Error
-      setError(error.message || "Une erreur s'est produite")
+      console.log(`Error Creating Account: ${err}`)
+      setError("Une erreur s'est produite")
     }
-    setLoading(false)
   }
 
   return (
@@ -127,10 +116,12 @@ export function AdminSignUpForm({ invit }: SignUpProps) {
           )}
         />
 
-        <Button type='submit' className='w-full' disabled={loading}>
-          {loading ? 'Création en cours...' : 'Créer le compte'}
+        <Button type='submit' className='w-full' disabled={form.formState.isSubmitting}>
+          {form.formState.isSubmitting ? 'Création en cours...' : 'Créer le compte'}
         </Button>
       </form>
     </Form>
   )
 }
+
+export default AdminSignUpForm

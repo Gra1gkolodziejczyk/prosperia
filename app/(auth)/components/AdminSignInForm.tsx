@@ -1,6 +1,7 @@
 'use client'
 
 import * as z from 'zod'
+import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
@@ -11,7 +12,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { loginSchema } from '@/src/lib/schemas'
-import { toast } from 'sonner'
 
 export function AdminSignInForm() {
   const router = useRouter()
@@ -30,31 +30,33 @@ export function AdminSignInForm() {
       setError('')
       const verifyValues = loginSchema.safeParse(values)
       if (verifyValues.success) {
-        await authClient.signIn.email(
-          {
-            email: values.email,
-            password: values.password
-          },
-          {
-            onSuccess: async () => {
-              const session = await authClient.getSession()
-              if (session.data?.user.role === 'admin') {
-                router.push('/dashboard')
-                toast("Connexion en tant qu'administrateur réussie.")
-              } else {
-                setError("Vous n'êtes pas autorisé à accéder à cette page.")
-                router.push('/')
-              }
+        if (typeof window !== 'undefined') {
+          await authClient.signIn.email(
+            {
+              email: values.email,
+              password: values.password
             },
-            onError: async (context: ErrorContext) => {
-              if (context.error.status === 401) {
-                setError("Une erreur s'est produite lors de l'obtention de l'utilisateur. Veuillez réessayer.")
-              } else {
-                setError(context.error.message || "Une erreur s'est produite. Veuillez réessayer.")
+            {
+              onSuccess: async () => {
+                const session = await authClient.getSession()
+                if (session.data?.user.role === 'admin' || session.data?.user.role === 'superAdmin') {
+                  router.push('/dashboard')
+                  toast("Connexion en tant qu'administrateur réussie.")
+                } else {
+                  setError("Vous n'êtes pas autorisé à accéder à cette page.")
+                  router.push('/')
+                }
+              },
+              onError: async (context: ErrorContext) => {
+                if (context.error.status === 401) {
+                  setError("Une erreur s'est produite lors de l'obtention de l'utilisateur. Veuillez réessayer.")
+                } else {
+                  setError(context.error.message || "Une erreur s'est produite. Veuillez réessayer.")
+                }
               }
             }
-          }
-        )
+          )
+        }
       } else {
         setError(verifyValues.error.errors[0].message)
       }
