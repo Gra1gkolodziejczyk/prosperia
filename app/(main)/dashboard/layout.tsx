@@ -1,4 +1,4 @@
-import SideBarWrapper from './components/sideBare/AdminSideBarWrapper'
+import SideBarWrapper from './components/sideBar/AdminSideBarWrapper'
 import { auth } from '@/src/lib/auth'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
