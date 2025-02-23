@@ -8,10 +8,12 @@ type AdminSideBarClientProps = {
 
 const AdminSideBar = ({ role }: AdminSideBarClientProps) => {
   return (
-    <Sidebar className='pt-[50px]'>
+    <Sidebar className='pt-[60px]'>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className='text-sm font-semibold uppercase tracking-wide text-muted-foreground px-3 py-2'>
+            Dashboard Admin
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <AdminSideBarMenu role={role} />
           </SidebarGroupContent>
