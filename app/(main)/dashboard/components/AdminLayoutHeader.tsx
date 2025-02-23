@@ -1,15 +1,9 @@
-import { z } from 'zod'
+type AdminLayoutHeaderProps = {
+  title: string
+  content: string
+}
 
-const HeaderSchema = z.object({
-  title: z.string().min(1, 'Titre obligatoire'),
-  content: z.string().min(1, 'Description obligatoire')
-})
-
-type HeaderProps = z.infer<typeof HeaderSchema>
-
-const AdminLayoutHeader = ({ title, content }: HeaderProps) => {
-  HeaderSchema.safeParse({ title, content })
-
+const AdminLayoutHeader = ({ title, content }: AdminLayoutHeaderProps) => {
   return (
     <div className='space-y-2.5'>
       <div className='space-y-1'>

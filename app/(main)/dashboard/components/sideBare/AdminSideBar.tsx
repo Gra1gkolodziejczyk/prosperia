@@ -1,18 +1,24 @@
-import { headers } from 'next/headers'
-import { redirect } from 'next/navigation'
-import { auth } from '@/src/lib/auth'
-import AdminSideBarClient from './AdminSideBarClient'
+'use client'
+import { Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent, SidebarGroupLabel } from '@/components/ui/sidebar'
+import AdminSideBarMenu from './AdminSideBarMenu'
 
-const AdminSideBar = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers()
-  })
+type AdminSideBarClientProps = {
+  role: string
+}
 
-  if (!session || session.user.role === 'user') {
-    redirect('/')
-  }
-  const role = session.user.role
-  return <AdminSideBarClient role={role} />
+const AdminSideBar = ({ role }: AdminSideBarClientProps) => {
+  return (
+    <Sidebar className='pt-[50px]'>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <AdminSideBarMenu role={role} />
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  )
 }
 
 export default AdminSideBar

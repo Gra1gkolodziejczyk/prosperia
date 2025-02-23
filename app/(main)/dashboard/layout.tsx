@@ -1,10 +1,21 @@
-import AdminSideBar from './components/sideBare/AdminSideBar'
+import SideBarWrapper from './components/sideBare/AdminSideBarWrapper'
+import { auth } from '@/src/lib/auth'
+import { headers } from 'next/headers'
+import { redirect } from 'next/navigation'
 
-const AdminLayout = ({ children }: { children: React.ReactNode }) => {
+const AdminLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await auth.api.getSession({
+    headers: await headers()
+  })
+
+  if (!session || session.user.role === 'user') {
+    redirect('/')
+  }
+  const role = session.user.role
   return (
     <div className='flex pt-16'>
-      <AdminSideBar />
-      <div className='flex-1 overflow-y-auto'>
+      <SideBarWrapper role={role} />
+      <div className='flex-1'>
         <div className='container max-w-screen-xl mx-auto p-8'>{children}</div>
       </div>
     </div>
