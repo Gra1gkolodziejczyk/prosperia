@@ -26,6 +26,10 @@ export const pageEnumSchema = z.enum(
   }
 )
 
+const dateSchema = z.preprocess(arg => {
+  return typeof arg === 'string' ? new Date(arg) : arg
+}, z.date())
+
 export const loginSchema = z.object({
   email: z
     .string()
@@ -212,34 +216,56 @@ export const categoryFormSchema = z.object({
 export const categorySchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
-  createdAt: z.date()
-})
-
-export const createBlogFormSchema = z.object({
-  title: z.string().min(1, 'Veuillez saisir un titre.').max(100, 'Le titre ne doit pas dépasser 100 caractères.')
-})
-
-export const createBlogSchema = z.object({
-  title: z.string().min(1, 'Veuillez saisir un titre.').max(100, 'Le titre ne doit pas dépasser 100 caractères.'),
-  content: z.string().min(1, 'Veuillez saisir un contenu.'),
-  mainImage: z.string().url("Veuillez saisir une URL valide pour l'image principale."),
-  creatorId: z
-    .string({ required_error: "L'ID du créateur de l'invitation est requis." })
-    .length(32)
-    .regex(/^[A-Za-z0-9]+$/),
-  categoryIds: z.array(z.string().uuid()).min(1, 'Veuillez sélectionner au moins une catégorie.')
+  createdAt: dateSchema
 })
 
 export const blogSchema = z.object({
   id: z.string().uuid(),
   title: z.string(),
-  content: z.string(),
+  customUrl: z.string(),
   mainImage: z.string(),
+  categories: z.array(categorySchema),
+  summary: z.string(),
+  content: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
   creatorId: z
     .string()
     .length(32)
     .regex(/^[A-Za-z0-9]+$/),
-  categories: z.array(categorySchema)
+  isPublished: z.boolean()
+})
+
+export const newBlogSchema = z.object({
+  title: z.string(),
+  customUrl: z.string(),
+  mainImage: z.string(),
+  categories: z.array(categorySchema),
+  summary: z.string(),
+  content: z.string(),
+  creatorId: z
+    .string()
+    .length(32)
+    .regex(/^[A-Za-z0-9]+$/),
+  isPublished: z.boolean()
+})
+
+export const newBlogFormSchema = z.object({
+  title: z.string().min(1, 'Veuillez saisir un titre.').max(100, 'Le titre ne doit pas dépasser 100 caractères.'),
+  customUrl: z
+    .string()
+    .min(1, 'Veuillez saisir une URL personnalisée.')
+    .max(100, "L'URL personnalisée ne doit pas dépasser 100 caractères."),
+  mainImage: z.string().url("Veuillez saisir une URL valide pour l'image principale."),
+  categories: z.array(categorySchema).min(1, 'Veuillez sélectionner au moins une catégorie.'),
+  summary: z.string().min(1, 'Veuillez saisir un résumé.').max(500, 'Le résumé ne doit pas dépasser 500 caractères.'),
+  content: z
+    .string()
+    .min(10, 'Veuillez saisir un contenu.')
+    .max(5000, 'Le contenu ne doit pas dépasser 5000 caractères.'),
+  creatorId: z
+    .string({ required_error: "L'ID du créateur de l'invitation est requis." })
+    .length(32)
+    .regex(/^[A-Za-z0-9]+$/),
+  isPublished: z.boolean()
 })

@@ -9,17 +9,20 @@ import { Check, ChevronsUpDown } from 'lucide-react'
 import { useState } from 'react'
 
 interface PropsType {
-  selectedCategories: string[]
-  onCategoryChange: (categories: string[]) => void
+  selectedCategories: CategoryType[]
+  onCategoryChange: (categories: CategoryType[]) => void
   categories: CategoryType[]
 }
 const CategoryList = ({ selectedCategories, onCategoryChange, categories }: PropsType) => {
   const [open, setOpen] = useState(false)
 
-  const toggleCategory = (category: string) => {
-    const updatedCategories = selectedCategories.includes(category)
-      ? selectedCategories.filter(c => c !== category)
+  const toggleCategory = (category: CategoryType) => {
+    const isSelected = selectedCategories.some(c => c.id === category.id)
+
+    const updatedCategories = isSelected
+      ? selectedCategories.filter(c => c.id !== category.id)
       : [...selectedCategories, category]
+
     onCategoryChange(updatedCategories)
   }
 
@@ -39,11 +42,11 @@ const CategoryList = ({ selectedCategories, onCategoryChange, categories }: Prop
             <CommandEmpty>Aucune Categorie trouvé</CommandEmpty>
             <CommandGroup className='max-h-64 overflow-auto'>
               {categories.map(category => (
-                <CommandItem key={category.id} onSelect={() => toggleCategory(category.id)}>
+                <CommandItem key={category.id} onSelect={() => toggleCategory(category)}>
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      selectedCategories.includes(category.id) ? 'opacity-100' : 'opacity-0'
+                      selectedCategories.some(c => c.id === category.id) ? 'opacity-100' : 'opacity-0'
                     )}
                   />
                   {category.name}

@@ -29,38 +29,32 @@ const AdminSideBarMenu = ({ role }: AdminSideBarMenuProps) => {
               Utilisateurs
             </Link>
           </SidebarMenuItem>
-        ) : (
-          <></>
-        )}
-        <SidebarMenuItem key={'blog'}>
-          <AdminSideBarSubMenuButton />
-          <CollapsibleContent>
-            <SidebarMenuSub>
-              <Link
-                key={'blog'}
-                href={'/dashboard/blog'}
-                className={cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors',
-                  pathName === '/dashboard/blog' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-secondary/50'
-                )}>
-                <FileText className='h-4 w-4' />
-                Articles
-              </Link>
-              <Link
-                key={'categorie'}
-                href={'/dashboard/category'}
-                className={cn(
-                  'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors',
-                  pathName === '/dashboard/category'
-                    ? 'bg-secondary text-secondary-foreground'
-                    : 'hover:bg-secondary/50'
-                )}>
-                <Folder className='h-4 w-4' />
-                Categorie
-              </Link>
-            </SidebarMenuSub>
-          </CollapsibleContent>
-        </SidebarMenuItem>
+        ) : null}
+        <AdminSideBarSubMenuButton />
+        <CollapsibleContent>
+          <SidebarMenuSub>
+            <Link
+              key={'blog'}
+              href={'/dashboard/blog'}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors',
+                pathName === '/dashboard/blog' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-secondary/50'
+              )}>
+              <FileText className='h-4 w-4' />
+              Articles
+            </Link>
+            <Link
+              key={'categorie'}
+              href={'/dashboard/category'}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors',
+                pathName === '/dashboard/category' ? 'bg-secondary text-secondary-foreground' : 'hover:bg-secondary/50'
+              )}>
+              <Folder className='h-4 w-4' />
+              Categorie
+            </Link>
+          </SidebarMenuSub>
+        </CollapsibleContent>
         <SidebarMenuItem key={'faq'}>
           <Link
             key={'faq'}

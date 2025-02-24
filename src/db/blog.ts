@@ -1,4 +1,4 @@
-import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { boolean, pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { relations } from 'drizzle-orm'
 import { user } from './user'
 import { blogCategory } from './blogCategory'
@@ -6,13 +6,16 @@ import { blogCategory } from './blogCategory'
 export const blog = pgTable('blogs', {
   id: uuid('id').primaryKey().defaultRandom(),
   title: text('title').notNull(),
-  content: text('content').notNull(),
+  customUrl: text('customUrl').notNull().unique(),
+  summary: text('summary').notNull(),
   mainImage: text('mainImage').notNull(),
+  content: text('content').notNull(),
   createdAt: timestamp('createdAt', { mode: 'date' }).defaultNow().notNull(),
   updatedAt: timestamp('updatedAt', { mode: 'date' }).notNull(),
   creatorId: text('inviterId')
     .notNull()
-    .references(() => user.id)
+    .references(() => user.id),
+  isPublished: boolean('isPublished').default(false).notNull()
 })
 
 export const blogRelations = relations(blog, ({ one, many }) => ({

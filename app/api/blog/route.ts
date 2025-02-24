@@ -27,12 +27,15 @@ export const GET = async () => {
           resBlog.push({
             id: blog.blog.id,
             title: blog.blog.title.replace(/__SPACE__/g, ' '),
+            customUrl: blog.blog.customUrl,
+            summary: blog.blog.summary,
             content: blog.blog.content,
             mainImage: blog.blog.mainImage,
             createdAt: blog.blog.createdAt,
             updatedAt: blog.blog.updatedAt,
             creatorId: blog.blog.creatorId,
-            categories: [blog.categories]
+            categories: [blog.categories],
+            isPublished: blog.blog.isPublished
           })
         }
       }

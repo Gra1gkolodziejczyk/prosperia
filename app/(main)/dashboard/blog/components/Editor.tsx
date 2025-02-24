@@ -1,7 +1,6 @@
 'use client'
 import StarterKit from '@tiptap/starter-kit'
 import { Content } from '@tiptap/core'
-import Placeholder from '@tiptap/extension-placeholder'
 import Link from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/react'
 import TaskItem from '@tiptap/extension-task-item'
@@ -71,8 +70,7 @@ export const Editor = ({ content, onChange }: { content?: Content; onChange: (co
       Highlight,
       Link.configure({ openOnClick: true }),
       TaskList.configure({ HTMLAttributes: { class: 'space-y-2 list-none' } }),
-      TaskItem.configure({ HTMLAttributes: { class: 'flex items-center space-x-2' } }),
-      Placeholder.configure({ placeholder: 'Start writing your blog here...' })
+      TaskItem.configure({ HTMLAttributes: { class: 'flex items-center space-x-2' } })
     ],
     editorProps: {
       attributes: {

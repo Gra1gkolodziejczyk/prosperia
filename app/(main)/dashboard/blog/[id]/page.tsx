@@ -1,17 +1,18 @@
 'use client'
-import { blogSchema, idSchema } from '@/src/lib'
-import { z } from 'zod'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
+import { BlogType } from '@/src/interfaces/blog'
+import { idSchema } from '@/src/lib/schemas'
 
 const BlogAdminDetailPage = () => {
   const params = useParams()
   const router = useRouter()
-  const [blog, setBlog] = useState<z.infer<typeof blogSchema> | null>(null)
+  const [blog, setBlog] = useState<BlogType | null>(null)
 
   useEffect(() => {
     const fetchBlog = async () => {

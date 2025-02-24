@@ -5,7 +5,7 @@ const AdminFAQHeader = () => {
   return (
     <div className='flex flex-row items-center justify-between'>
       <div>
-        <AdminLayoutHeader title='FAQ' content='Gérez les questions fréquemment posées' />
+        <AdminLayoutHeader title='FAQ' content='Gérer les questions fréquemment posées' />
       </div>
       <div>
         <AdminFAQCreateButton />

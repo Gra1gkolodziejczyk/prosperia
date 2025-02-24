@@ -1,8 +1,13 @@
-import ClientWrapper from './ClientWrapper';
+import AdminBlogBody from './components/AdminBlogBody'
+import AdminBlogHeader from './components/AdminBlogHeader'
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
-export default function BlogPage() {
-  return <ClientWrapper />;
+const blogPage = () => {
+  return (
+    <div className='space-y-4'>
+      <AdminBlogHeader />
+      <AdminBlogBody />
+    </div>
+  )
 }
+
+export default blogPage

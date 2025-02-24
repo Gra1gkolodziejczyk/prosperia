@@ -1,10 +1,11 @@
 import { z } from 'zod'
-import { blogSchema } from '../lib/schemas'
+import { blogSchema, newBlogSchema } from '../lib/schemas'
 
+export type BlogType = z.infer<typeof blogSchema>
 export interface BlogResInterface {
   status: number
   message: string
-  data: z.infer<typeof blogSchema>[]
+  data: BlogType[]
 }
 
-export type BlogType = z.infer<typeof blogSchema>
+export type NewBlogType = z.infer<typeof newBlogSchema>

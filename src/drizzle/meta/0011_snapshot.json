@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
   "id": "a80cb9c8-4165-4afa-91f0-4c4ebc2371f1",
-=======
-  "id": "e233af30-2bca-4024-8b6e-45bd9a723913",
->>>>>>> 3d92f8759bcfb2df81c8aa06cb2ffddd1f411983
   "prevId": "50cfb064-a742-4578-a239-e3a744949799",
   "version": "7",
   "dialect": "postgresql",
@@ -97,12 +93,8 @@
           "name": "accounts_userId_users_id_fk",
           "tableFrom": "accounts",
           "tableTo": "users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -168,12 +160,8 @@
           "name": "blogs_inviterId_users_id_fk",
           "tableFrom": "blogs",
           "tableTo": "users",
-          "columnsFrom": [
-            "inviterId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["inviterId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -207,12 +195,8 @@
           "name": "blogCategories_blogId_blogs_id_fk",
           "tableFrom": "blogCategories",
           "tableTo": "blogs",
-          "columnsFrom": [
-            "blogId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["blogId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         },
@@ -220,12 +204,8 @@
           "name": "blogCategories_categoryId_categories_id_fk",
           "tableFrom": "blogCategories",
           "tableTo": "categories",
-          "columnsFrom": [
-            "categoryId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["categoryId"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -233,10 +213,7 @@
       "compositePrimaryKeys": {
         "blogCategories_blogId_categoryId_pk": {
           "name": "blogCategories_blogId_categoryId_pk",
-          "columns": [
-            "blogId",
-            "categoryId"
-          ]
+          "columns": ["blogId", "categoryId"]
         }
       },
       "uniqueConstraints": {},
@@ -276,9 +253,7 @@
         "categories_name_unique": {
           "name": "categories_name_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
+          "columns": ["name"]
         }
       },
       "policies": {},
@@ -308,15 +283,6 @@
           "primaryKey": false,
           "notNull": true
         },
-<<<<<<< HEAD
-=======
-        "page": {
-          "name": "page",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
->>>>>>> 3d92f8759bcfb2df81c8aa06cb2ffddd1f411983
         "createdAt": {
           "name": "createdAt",
           "type": "timestamp",
@@ -344,9 +310,7 @@
         "faq_orderId_unique": {
           "name": "faq_orderId_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "orderId"
-          ]
+          "columns": ["orderId"]
         }
       },
       "policies": {},
@@ -416,9 +380,7 @@
         "users_email_unique": {
           "name": "users_email_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "email"
-          ]
+          "columns": ["email"]
         }
       },
       "policies": {},
@@ -490,12 +452,8 @@
           "name": "invitations_inviterId_users_id_fk",
           "tableFrom": "invitations",
           "tableTo": "users",
-          "columnsFrom": [
-            "inviterId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["inviterId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -620,12 +578,8 @@
           "name": "sessions_userId_users_id_fk",
           "tableFrom": "sessions",
           "tableTo": "users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -635,9 +589,7 @@
         "sessions_token_unique": {
           "name": "sessions_token_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "token"
-          ]
+          "columns": ["token"]
         }
       },
       "policies": {},
@@ -679,12 +631,8 @@
           "name": "twoFactors_userId_users_id_fk",
           "tableFrom": "twoFactors",
           "tableTo": "users",
-          "columnsFrom": [
-            "userId"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["userId"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -770,11 +718,7 @@
     "public.user_role": {
       "name": "user_role",
       "schema": "public",
-      "values": [
-        "admin",
-        "superAdmin",
-        "user"
-      ]
+      "values": ["admin", "superAdmin", "user"]
     }
   },
   "schemas": {},
