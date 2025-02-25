@@ -49,7 +49,7 @@ export const FaqAccordions = ({ page }: FAQAccordionsProps) => {
         {faqs.map(faq => (
           <AccordionItem key={faq.id} value={faq.id} className='border rounded-lg px-6'>
             <AccordionTrigger className='text-lg font-semibold py-6'>{faq.question}</AccordionTrigger>
-            <AccordionContent className='pb-6 text-muted-foreground'>
+            <AccordionContent className='pb-6'>
               <div dangerouslySetInnerHTML={{ __html: faq.answer.replace(/\n/g, '<br>') }} />
             </AccordionContent>
           </AccordionItem>
