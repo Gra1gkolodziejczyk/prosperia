@@ -8,11 +8,12 @@ const AdminSideBarTrigger = () => {
 
   return (
     <Button
-      variant='ghost'
+      variant='none'
+      size='icon'
       onClick={toggleSidebar}
       className={cn(
         'fixed top-[90px] z-50 duration-300 transition-all',
-        isMobile ? 'left-[-10px]' : state === 'expanded' ? 'left-[16rem]' : 'left-[-10px]'
+        isMobile ? 'left-[-5px]' : state === 'expanded' ? 'left-[16rem]' : 'left-[-5px]'
       )}>
       <PanelLeft />
     </Button>
