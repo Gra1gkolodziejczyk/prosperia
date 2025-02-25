@@ -5,6 +5,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { MessageType } from '@/src/interfaces/message'
 import AdminSupportDetailViewButton from './AdminSupportDetailViewButton'
 import AdminSupportDetailCopyButton from './AdminSupportDetailCopyButton'
+import { useEffect, useState } from 'react'
 
 type AdminSupportDetailDialogProps = {
   message: MessageType
@@ -13,18 +14,25 @@ type AdminSupportDetailDialogProps = {
 }
 
 const AdminSupportDetailDialog = ({ message, open, setOpen }: AdminSupportDetailDialogProps) => {
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase()
+    setIsMobile(/mobile|android|iphone|ipad/.test(userAgent))
+  }, [])
+
   return (
     <Dialog open={open} onOpenChange={isOpen => setOpen(isOpen)}>
-      <DialogContent className='sm:max-w-[900px]'>
+      <DialogContent className='max-w-full sm:max-w-[900px] max-h-[70vh] overflow-y-auto'>
         <DialogHeader>
           <DialogTitle>Message</DialogTitle>
           <DialogDescription>Details du message</DialogDescription>
         </DialogHeader>
-        <div className='grid grid-cols-5 gap-6'>
-          <div className='col-span-2 space-y-6 border-r'>
+        <div className='grid grid-cols-1 md:grid-cols-5 gap-6'>
+          <div className='md:col-span-2 space-y-6 border-r md:border-r border-none'>
             <h3 className='text-lg font-semibold'>Information Utilisateurs</h3>
             <div className='space-y-4'>
-              <div className='grid gap-2 h-full'>
+              <div className='grid gap-2'>
                 <div className='flex gap-2'>
                   <div className='font-medium'>Nom:</div> {message.firstName} {message.lastName}
                 </div>
@@ -45,18 +53,22 @@ const AdminSupportDetailDialog = ({ message, open, setOpen }: AdminSupportDetail
                 </div>
               </div>
             </div>
-            <div className='flex space-x-2'>
-              <Button variant='outline' onClick={() => setOpen(false)}>
-                Fermer
-              </Button>
-              <AdminSupportDetailViewButton message={message} />
-            </div>
+            {!isMobile && (
+              <div className='flex flex-row justify-evenly'>
+                <AdminSupportDetailViewButton message={message} />
+                <Button variant='outline' onClick={() => setOpen(false)}>
+                  Fermer
+                </Button>
+              </div>
+            )}
           </div>
-          <div className='space-y-4 col-span-3'>
+
+          {/* Message Section */}
+          <div className='space-y-4 md:col-span-3'>
             <div>
               <h3 className='text-lg font-semibold'>Message</h3>
               <div className='mt-2 flex gap-2'>
-                <div className='font-medium whitespace-nowrap'>Sujet : </div> {message.topic}
+                <div className='font-medium whitespace-nowrap'>Sujet :</div> {message.topic}
               </div>
             </div>
             <ScrollArea className='h-[300px] w-full rounded-md border p-4'>
@@ -64,6 +76,14 @@ const AdminSupportDetailDialog = ({ message, open, setOpen }: AdminSupportDetail
             </ScrollArea>
           </div>
         </div>
+        {isMobile && (
+          <div className='flex flex-row justify-between'>
+            <AdminSupportDetailViewButton message={message} />
+            <Button variant='outline' onClick={() => setOpen(false)}>
+              Fermer
+            </Button>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   )

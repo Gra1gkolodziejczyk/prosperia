@@ -8,7 +8,7 @@ type AdminSideBarClientProps = {
 
 const AdminSideBar = ({ role }: AdminSideBarClientProps) => {
   return (
-    <Sidebar className='pt-[60px]'>
+    <Sidebar className='pt-[60px] h-full'>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className='text-sm font-semibold uppercase tracking-wide text-muted-foreground px-3 py-2'>

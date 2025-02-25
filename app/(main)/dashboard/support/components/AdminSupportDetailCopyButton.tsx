@@ -1,3 +1,4 @@
+import { toast } from 'sonner'
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -11,8 +12,13 @@ const AdminSupportDetailCopyButton = ({ email }: AdminSupportDetailCopyButtonPro
   const [isCopied, setIsCopied] = useState(false)
 
   const onCopy = () => {
-    navigator.clipboard.writeText(email)
+    const textArea = document.createElement('textarea')
+    textArea.value = email
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand('copy')
     setIsCopied(true)
+    toast.success('Email copié dans le presse-papier')
   }
 
   return (
