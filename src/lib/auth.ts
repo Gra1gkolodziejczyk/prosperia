@@ -1,6 +1,7 @@
 import { betterAuth } from 'better-auth'
 import { twoFactor } from 'better-auth/plugins'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
+import { nextCookies } from 'better-auth/next-js'
 import { user as dbUser, account, session, twoFactor as twoFactorSchema, verification } from '../db'
 import { db } from './db'
 
@@ -40,7 +41,7 @@ export const auth = betterAuth({
       enabled: true
     }
   },
-  plugins: [twoFactor()]
+  plugins: [twoFactor(), nextCookies()]
 })
 
 export type Session = typeof auth.$Infer.Session

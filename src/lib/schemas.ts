@@ -39,16 +39,23 @@ export const loginSchema = z.object({
   rememberMe: z.boolean().optional()
 })
 
-export const registerSchema = z.object({
+export const registerFormSchema = z.object({
   name: z
     .string()
-    .min(1, "Veuillez saisir un nom d'au moins 1 caractères.")
+    .min(1, 'Veuillez saisir un nom valide')
     .max(50, 'Veuillez saisir un nom avec moins de 50 caractères.'),
   email: z
     .string()
     .email('Veuillez saisir une adresse email valide.')
     .max(100, 'Veuillez saisir une adresse email avec moins de 100 caractères.'),
   password: z.string().min(8, "Veuillez saisir un mot de passe d'au moins 8 caractères.")
+})
+
+export const registerSchema = z.object({
+  name: z.string().min(1).max(50),
+  email: z.string().email().max(100),
+  password: z.string().min(8),
+  role: roleSchema
 })
 
 export const faqSchema = z.object({

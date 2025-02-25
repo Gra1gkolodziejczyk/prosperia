@@ -1,23 +1,22 @@
 'use client'
 
-import * as z from 'zod'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { ErrorContext } from 'better-auth/react'
-import { authClient } from '@/src/lib/auth-client'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { loginSchema } from '@/src/lib/schemas'
+import { loginType } from '@/src/interfaces/auth'
+import { signIn } from '@/src/actions/auth.action'
 
 export function AdminSignInForm() {
   const router = useRouter()
   const [error, setError] = useState<string>('')
 
-  const form = useForm<z.infer<typeof loginSchema>>({
+  const form = useForm<loginType>({
     defaultValues: {
       email: '',
       password: ''
@@ -25,45 +24,19 @@ export function AdminSignInForm() {
   })
   const { isSubmitting } = form.formState
 
-  async function onSubmit(values: z.infer<typeof loginSchema>) {
-    try {
-      setError('')
-      const verifyValues = loginSchema.safeParse(values)
-      if (verifyValues.success) {
-        if (typeof window !== 'undefined') {
-          await authClient.signIn.email(
-            {
-              email: values.email,
-              password: values.password
-            },
-            {
-              onSuccess: async () => {
-                const session = await authClient.getSession()
-                if (session.data?.user.role === 'admin' || session.data?.user.role === 'superAdmin') {
-                  router.push('/dashboard')
-                  toast("Connexion en tant qu'administrateur réussie.")
-                } else {
-                  setError("Vous n'êtes pas autorisé à accéder à cette page.")
-                  router.push('/')
-                }
-              },
-              onError: async (context: ErrorContext) => {
-                if (context.error.status === 401) {
-                  console.log(context.error)
-                  setError("Une erreur s'est produite lors de l'obtention de l'utilisateur. Veuillez réessayer.")
-                } else {
-                  setError(context.error.message || "Une erreur s'est produite. Veuillez réessayer.")
-                }
-              }
-            }
-          )
-        }
+  const onSubmit = async (values: loginType) => {
+    setError('')
+    const verifyValues = loginSchema.safeParse(values)
+    if (verifyValues.success) {
+      const resp = await signIn(values)
+      if (resp.success) {
+        toast.success(resp.message)
+        router.push('/dashboard')
       } else {
-        setError(verifyValues.error.errors[0].message)
+        setError(resp.message)
       }
-    } catch (err) {
-      const error = err as Error
-      setError(error.message || "Une erreur s'est produite. Veuillez réessayer.")
+    } else {
+      setError(verifyValues.error.errors[0].message)
     }
   }
 
