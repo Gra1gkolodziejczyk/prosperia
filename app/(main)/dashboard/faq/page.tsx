@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import AdminFAQBody from './components/AdminFAQBody'
 import AdminFAQHeader from './components/AdminFAQHeader'
 import { getAllFAQCached } from './faq.fetch'
@@ -8,6 +9,7 @@ const FAQPage = async () => {
     <div className='space-y-4'>
       <AdminFAQHeader />
       <AdminFAQBody faqs={allFaq} />
+      <Toaster richColors />
     </div>
   )
 }

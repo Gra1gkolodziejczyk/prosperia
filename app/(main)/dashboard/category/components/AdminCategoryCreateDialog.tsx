@@ -10,7 +10,7 @@ import {
   DialogTrigger
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
-import AdminCategoryCreateForm from './AdminCategoryCreateForm'
+import AdminCategoryCreateForm from './form/AdminCategoryCreateForm'
 
 type AdminCategoryCreateDialogProps = {
   categories: CategoryType[]

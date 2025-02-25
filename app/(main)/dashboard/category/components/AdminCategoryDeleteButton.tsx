@@ -1,9 +1,10 @@
 'use client'
 
+import { toast } from 'sonner'
+import React from 'react'
+import { Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { deleteCategory } from '@/src/actions/category.action'
-import { Trash2 } from 'lucide-react'
-import React from 'react'
 
 type AdminCategoryDeleteButtonProps = {
   id: string
@@ -12,8 +13,10 @@ type AdminCategoryDeleteButtonProps = {
 const AdminCategoryDeleteButton = ({ id }: AdminCategoryDeleteButtonProps) => {
   const onDelete = async () => {
     const res = await deleteCategory(id)
-    if (res) {
-      console.log('Category Deleted')
+    if (res.success) {
+      toast.success(res.message)
+    } else {
+      toast.error(res.message)
     }
   }
 

@@ -1,7 +1,8 @@
+import { toast } from 'sonner'
+import { Bookmark, BookmarkCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { changeViewMessage } from '@/src/actions/support.action'
 import { MessageType } from '@/src/interfaces/message'
-import { Bookmark, BookmarkCheck } from 'lucide-react'
 
 type AdminSupportDetailViewButtonProps = {
   message: MessageType
@@ -10,8 +11,11 @@ type AdminSupportDetailViewButtonProps = {
 const AdminSupportDetailViewButton = ({ message }: AdminSupportDetailViewButtonProps) => {
   const onChangeView = async () => {
     const resp = await changeViewMessage(message.id)
-    if (resp) {
+    if (resp.success) {
       message.isViewed = !message.isViewed
+      toast.success(resp.message)
+    } else {
+      toast.error(resp.message)
     }
   }
 

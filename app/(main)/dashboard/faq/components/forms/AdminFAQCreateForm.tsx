@@ -1,13 +1,14 @@
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
+import { useState } from 'react'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import AdminFAQSelectButton from '../AdminFAQSelectButton'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { formFAQSchema, pageEnumSchema } from '@/src/lib/schemas'
-import { z } from 'zod'
 import { createFaq } from '@/src/actions/faq.action'
 
 type AdminFAQCreateFormProps = {
@@ -35,14 +36,14 @@ const AdminFAQCreateForm = ({ onClick }: AdminFAQCreateFormProps) => {
           answer: values.answer,
           page: verifyPage.data
         }
-        const isSuccess = await createFaq(faqCreate)
-        console.log(isSuccess)
-        if (isSuccess) {
+        const resp = await createFaq(faqCreate)
+        if (resp.success) {
           setError('')
           onClick()
           form.reset()
+          toast.success(resp.message)
         } else {
-          setError('Erreur lors de la création de la FAQ')
+          setError(resp.message)
         }
       } else {
         setError(verifyPage.error.errors[0].message)

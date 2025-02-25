@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { createCategory } from '@/src/actions/category.action'
@@ -30,11 +31,12 @@ const AdminCategoryCreateForm = ({ onClose, categories }: AdminCategoryCreateFor
         setError('Cette catégorie existe déjà')
       } else {
         const res = await createCategory(values.name)
-        if (res) {
+        if (res.success) {
           onClose()
           form.reset()
+          toast.success(res.message)
         } else {
-          setError('Erreur lors de la création de la catégorie')
+          setError(res.message)
         }
       }
     } else {

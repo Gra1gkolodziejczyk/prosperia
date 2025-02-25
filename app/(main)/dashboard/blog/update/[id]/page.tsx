@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import { redirect } from 'next/navigation'
 import { getBlogById } from '../../blog.fetch'
 import { idSchema } from '@/src/lib/schemas'
@@ -17,7 +18,12 @@ const updateBlogPage = async ({ params }: { params: Promise<{ id: string }> }) =
       if (!article) {
         redirect('/')
       } else {
-        return <AdminUpdateBlogBody article={article} categories={categories} />
+        return (
+          <>
+            <AdminUpdateBlogBody article={article} categories={categories} />
+            <Toaster richColors />
+          </>
+        )
       }
     }
   }

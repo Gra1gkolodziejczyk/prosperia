@@ -23,12 +23,12 @@ export const createMessage = async (body: CreateMessageTyp) => {
       .returning()
     if (newMessage.length !== 0) {
       revalidateTag('message')
-      return true
+      return { success: true, message: 'Message envoyé avec succès' }
     }
   } catch (error) {
     console.log(error)
   }
-  return false
+  return { success: false, message: "Erreur lors de l'envoi du message. Veuillez contacter un Administrateur." }
 }
 
 export const deleteMessage = async (id: string) => {
@@ -36,13 +36,12 @@ export const deleteMessage = async (id: string) => {
     try {
       await db.delete(messages).where(eq(messages.id, id)).returning()
       revalidateTag('message')
-      return true
+      return { success: true, message: 'Message supprimé avec succès' }
     } catch (error) {
       console.log(error)
-      return false
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la suppression du message' }
 }
 
 export const changeViewMessage = async (id: string) => {
@@ -53,10 +52,10 @@ export const changeViewMessage = async (id: string) => {
         await db.update(messages).set({ isViewed: !message[0].isViewed }).where(eq(messages.id, id)).returning()
         revalidateTag('message')
       }
-      return true
+      return { success: true, message: 'Changement de statut validé' }
     } catch (error) {
       console.log(error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors du changement du statut' }
 }

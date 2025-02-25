@@ -1,15 +1,16 @@
 'use client'
 
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { BlogType, NewBlogType } from '@/src/interfaces/blog'
 import { CategoryType } from '@/src/interfaces/category'
-import { useState } from 'react'
 import AdminCreateBlogFirstStep from '../../../new/components/AdminCreateBlogFirstStep'
 import AdminCreateBlogHeader from '../../../new/components/AdminCreateBlogHeader'
 import AdminCreateBlogThirdStep from '../../../new/components/AdminCreateBlogThirdStep'
 import AdminCreateErrorDialog from '../../../new/components/AdminCreateErrorDialog'
 import AdminCreateSecondStep from '../../../new/components/AdminCreateSecondStep'
 import { updateBlog } from '@/src/actions/blog.action'
-import { useRouter } from 'next/navigation'
 
 type AdminUpdateBlogBodyProps = {
   article: BlogType
@@ -47,10 +48,11 @@ const AdminUpdateBlogBody = ({ article, categories }: AdminUpdateBlogBodyProps) 
       createdAt: new Date(article.createdAt)
     }
     const resp = await updateBlog(updateArticle)
-    if (resp) {
+    if (resp.success) {
       router.push('/dashboard/blog')
+      toast.success(resp.message)
     } else {
-      console.error('Error updating blog')
+      toast.error(resp.message)
     }
   }
 

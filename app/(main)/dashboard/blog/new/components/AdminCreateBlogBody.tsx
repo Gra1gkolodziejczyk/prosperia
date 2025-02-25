@@ -1,5 +1,7 @@
 'use client'
 
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { NewBlogType } from '@/src/interfaces/blog'
 import { CategoryType } from '@/src/interfaces/category'
@@ -9,7 +11,6 @@ import AdminCreateSecondStep from './AdminCreateSecondStep'
 import AdminCreateBlogThirdStep from './AdminCreateBlogThirdStep'
 import AdminCreateErrorDialog from './AdminCreateErrorDialog'
 import { createBlog } from '@/src/actions/blog.action'
-import { useRouter } from 'next/navigation'
 
 type AdminCreateBlogBodyProps = {
   categories: CategoryType[]
@@ -37,10 +38,11 @@ const AdminCreateBlogBody = ({ categories, userId }: AdminCreateBlogBodyProps) =
     const newArticle = { ...article, isPublished }
     console.log(newArticle)
     const resp = await createBlog(newArticle)
-    if (resp) {
+    if (resp.success) {
       router.push('/dashboard/blog')
+      toast.success(resp.message)
     } else {
-      console.log('Error creating blog')
+      toast.error(resp.message)
     }
   }
 

@@ -20,7 +20,7 @@ export const createBlog = async (body: NewBlogType) => {
         const missingCategories = validateBody.data.categories.filter(category => !existingCategoryIds.has(category.id))
 
         if (missingCategories.length > 0) {
-          return false
+          return { success: false, message: 'Erreur lors de la création du blog : catégorie(s) inexistante(s)' }
         }
 
         const newBlog = await db
@@ -45,13 +45,13 @@ export const createBlog = async (body: NewBlogType) => {
         }))
         await db.insert(blogCategory).values(categoryLinks)
         revalidateTag('blog')
-        return true
+        return { success: true, message: 'Blog créé avec succès' }
       }
     } catch (error) {
       console.error('Error creating blog:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la création du blog' }
 }
 
 export const deleteBlog = async (blogId: string) => {
@@ -61,13 +61,13 @@ export const deleteBlog = async (blogId: string) => {
       if (blogs.length > 0) {
         await db.delete(blog).where(eq(blog.id, blogId)).returning()
         revalidateTag('blog')
-        return true
+        return { success: true, message: 'Blog supprimé avec succès' }
       }
     } catch (error) {
       console.error('Error deleting blog:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la suppression du blog' }
 }
 
 export const updateBlog = async (body: BlogType) => {
@@ -81,7 +81,7 @@ export const updateBlog = async (body: BlogType) => {
           const existingCategoryIds = new Set(existingCategories.map(cat => cat.id))
           const missingCategories = newBody.data.categories.filter(category => !existingCategoryIds.has(category.id))
           if (missingCategories.length > 0) {
-            return false
+            return { success: false, message: 'Erreur lors de la mise à jour du blog : catégorie(s) inexistante(s)' }
           }
           const updateBlog = await db
             .update(blog)
@@ -107,7 +107,7 @@ export const updateBlog = async (body: BlogType) => {
               console.log('No categories to update')
             }
             revalidateTag('blog')
-            return true
+            return { success: true, message: 'Blog mis à jour avec succès' }
           } else {
             console.log('No blog to update')
           }
@@ -121,5 +121,5 @@ export const updateBlog = async (body: BlogType) => {
       console.error('Error updating blog:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la mise à jour du blog' }
 }

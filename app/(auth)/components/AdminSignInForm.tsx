@@ -49,6 +49,7 @@ export function AdminSignInForm() {
               },
               onError: async (context: ErrorContext) => {
                 if (context.error.status === 401) {
+                  console.log(context.error)
                   setError("Une erreur s'est produite lors de l'obtention de l'utilisateur. Veuillez réessayer.")
                 } else {
                   setError(context.error.message || "Une erreur s'est produite. Veuillez réessayer.")

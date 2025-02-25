@@ -1,3 +1,6 @@
+import { z } from 'zod'
+import { toast } from 'sonner'
+import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { FAQType } from '@/src/interfaces/faq'
 import { FormItem, FormLabel, FormControl, FormMessage, FormField, Form } from '@/components/ui/form'
@@ -5,9 +8,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { useForm } from 'react-hook-form'
 import { formFAQSchema, pageEnumSchema } from '@/src/lib/schemas'
-import { z } from 'zod'
 import { updateFaq } from '@/src/actions/faq.action'
 import AdminFAQSelectButton from '../AdminFAQSelectButton'
 
@@ -39,12 +40,13 @@ const AdminFAQUpdateForm = ({ faq, onClose }: AdminFAQUpdateFormProps) => {
           page: verifyPage.data
         }
         const resp = await updateFaq(updatedFaq)
-        if (resp) {
+        if (resp.success) {
           setError('')
           form.reset()
           onClose()
+          toast.success(resp.message)
         } else {
-          setError('Erreur lors de la mise à jour de la FAQ')
+          setError(resp.message)
         }
       } else {
         setError(verifyPage.error.errors[0].message)

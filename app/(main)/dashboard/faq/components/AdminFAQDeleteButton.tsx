@@ -1,7 +1,8 @@
+import { toast } from 'sonner'
+import { Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { deleteFaq } from '@/src/actions/faq.action'
 import { FAQType } from '@/src/interfaces/faq'
-import { Trash2 } from 'lucide-react'
 
 type AdminFAQDeleteButtonProps = {
   faq: FAQType
@@ -10,10 +11,10 @@ type AdminFAQDeleteButtonProps = {
 const AdminFAQDeleteButton = ({ faq }: AdminFAQDeleteButtonProps) => {
   const onDelete = async () => {
     const rep = await deleteFaq(faq.id)
-    if (rep) {
-      console.log('FAQ deleted')
+    if (rep.success) {
+      toast.success(rep.message)
     } else {
-      console.log('Error deleting FAQ')
+      toast.error(rep.message)
     }
   }
 

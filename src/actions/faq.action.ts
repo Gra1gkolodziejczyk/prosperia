@@ -28,13 +28,13 @@ export const createFaq = async (newFaq: NewFAQInterface) => {
         .returning()
       if (rep) {
         revalidateTag('faq')
-        return true
+        return { success: true, message: 'La FAQ a été créée avec succès' }
       }
     } catch (error) {
       console.error('Error creating FAQ:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la création de la FAQ' }
 }
 
 export const deleteFaq = async (id: string) => {
@@ -50,13 +50,13 @@ export const deleteFaq = async (id: string) => {
           }
         })
         revalidateTag('faq')
-        return true
+        return { success: true, message: 'La FAQ a été supprimée avec succès' }
       }
     } catch (error) {
       console.error('Error deleting FAQ:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la suppression de la FAQ' }
 }
 
 export const updateFaq = async (updatedFaq: FAQType) => {
@@ -86,13 +86,13 @@ export const updateFaq = async (updatedFaq: FAQType) => {
         .returning()
       if (updateFaq) {
         revalidateTag('faq')
-        return true
+        return { success: true, message: 'La FAQ a été mise à jour avec succès' }
       }
     } catch (error) {
       console.error('Error updating FAQ:', error)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la mise à jour de la FAQ' }
 }
 
 export const changeFAQOrder = async (faqs: FAQType[]) => {
@@ -111,10 +111,10 @@ export const changeFAQOrder = async (faqs: FAQType[]) => {
         }
       })
       revalidateTag('faq')
-      return true
+      return { success: true, message: "L'ordre des FAQ a été modifié avec succès" }
     } catch (error) {
       console.error('Error changing FAQ order:', error)
     }
   }
-  return false
+  return { success: false, message: "Erreur lors de la modification de l'ordre des FAQ" }
 }

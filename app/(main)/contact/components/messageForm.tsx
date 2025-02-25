@@ -30,10 +30,10 @@ export const FormMessage = () => {
     if (dataValidation.success) {
       setError(null)
       const resp = await createMessage(dataValidation.data)
-      if (resp) {
+      if (resp.success) {
         setIsSend(true)
       } else {
-        setError("Une erreur est survenue lors de l'envoi du message.")
+        setError(resp.message)
       }
     } else {
       const err = dataValidation.error.errors[0].message

@@ -9,9 +9,10 @@ import AdminUserChangeRoleButton from './AdminUserChangeRoleButton'
 
 type AdminUserSelectButtonProps = {
   user: UserType
+  userId: string
 }
 
-const AdminUserSelectButton = ({ user }: AdminUserSelectButtonProps) => {
+const AdminUserSelectButton = ({ user, userId }: AdminUserSelectButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -20,7 +21,7 @@ const AdminUserSelectButton = ({ user }: AdminUserSelectButtonProps) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align='end'>
-        <AdminUserChangeRoleButton user={user} />
+        <AdminUserChangeRoleButton user={user} userId={userId} />
       </DropdownMenuContent>
     </DropdownMenu>
   )

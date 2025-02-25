@@ -1,9 +1,11 @@
-import { formInvitSchema } from '@/src/lib/schemas'
-import { useState } from 'react'
 import { z } from 'zod'
+import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { format } from 'date-fns'
 import { fr } from 'date-fns/locale'
+import { useState } from 'react'
+import { CalendarIcon } from 'lucide-react'
+import { formInvitSchema } from '@/src/lib/schemas'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
@@ -11,7 +13,6 @@ import { Switch } from '@/components/ui/switch'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/src/lib/utils'
-import { CalendarIcon } from 'lucide-react'
 import { Calendar } from '@/components/ui/calendar'
 import { createInvitation } from '@/src/actions/invitation.action'
 
@@ -34,13 +35,13 @@ const AdminInvitationCreateForm = ({ onClose }: AdminInvitationCreateDialogProps
     const verifyValues = formInvitSchema.safeParse(values)
     if (verifyValues.success) {
       const resp = await createInvitation(verifyValues.data)
-      if (resp) {
+      if (resp.success) {
         onClose()
         form.reset()
-        console.log('Invitation Created Successfully')
+        toast.success(resp.message)
       } else {
         console.error('Error Creating Invitation')
-        setError("Erreur lors de la création de l'invitation")
+        setError(resp.message)
       }
     } else {
       console.error(verifyValues.error)

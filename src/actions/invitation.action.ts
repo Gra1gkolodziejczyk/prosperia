@@ -7,6 +7,7 @@ import { invitation } from '../db/invitation'
 import { getUserId, isUserSuperAdmin } from './admin.action'
 import { db } from '../lib/db'
 import { roleSchema } from '../lib/schemas'
+import { sendInvitMail } from './mail.action'
 
 export const createInvitation = async (body: InvitationFormType) => {
   if (await isUserSuperAdmin()) {
@@ -27,14 +28,19 @@ export const createInvitation = async (body: InvitationFormType) => {
           .returning()
         if (newInvit) {
           revalidatePath('/')
-          return true
+          const resp = await sendInvitMail(body.email, newInvit[0].id)
+          if (resp.success) {
+            return { success: true, message: 'Invitation a été créée et envoyée avec succès.' }
+          } else {
+            return { success: false, message: resp.message }
+          }
         }
       }
     } catch (error) {
       console.log(`Error Creating Invitation: ${error}`)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la création' }
 }
 
 export const setUsedInvitation = async (id: string) => {
@@ -42,10 +48,10 @@ export const setUsedInvitation = async (id: string) => {
     const res = await db.update(invitation).set({ isUsed: true }).where(eq(invitation.id, id))
     if (res) {
       revalidatePath('/')
-      return true
+      return { success: true, message: 'Invitation utilisée avec succès' }
     }
   } catch (error) {
     console.log(`Error Setting Used Invitation: ${error}`)
   }
-  return false
+  return { success: false, message: "Erreur lors de l'utilisation de l'invitation" }
 }

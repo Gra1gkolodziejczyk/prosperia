@@ -1,11 +1,12 @@
 import { DragDropContext, Draggable, Droppable, DropResult } from '@hello-pangea/dnd'
+import { toast } from 'sonner'
+import { useEffect, useState } from 'react'
 import { GripVertical } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { TableBody, TableCell, TableHead, TableHeader, TableRow, Table } from '@/components/ui/table'
 import { FAQType } from '@/src/interfaces/faq'
 import AdminFAQTableSelectButton from './AdminFAQTableSelectButton'
 import { changeFAQOrder } from '@/src/actions/faq.action'
-import { useEffect, useState } from 'react'
 
 type AdminFAQTableProps = {
   faqs: FAQType[]
@@ -29,10 +30,10 @@ const AdminFAQTable = ({ faqs }: AdminFAQTableProps) => {
     }))
     setFaqlist(updatedFaqs)
     const resp = await changeFAQOrder(updatedFaqs)
-    if (resp) {
-      console.log('FAQs reordered')
+    if (resp.success) {
+      toast.success(resp.message)
     } else {
-      console.log('Error reordering FAQs')
+      toast.error(resp.message)
     }
   }
 

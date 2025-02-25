@@ -20,11 +20,11 @@ export const changeUserRole = async (userId: string, role: string) => {
         .returning()
       if (updateUser) {
         revalidateTag('user')
-        return true
+        return { success: true, message: 'Role Changé avec succès' }
       }
     } catch (error) {
       console.log(`Error Changing User Role: ${error}`)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors du changement de rôle' }
 }

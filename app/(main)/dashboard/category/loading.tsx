@@ -3,7 +3,7 @@ import AdminCategoryHeader from './components/AdminCategoryHeader'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
-const loading = () => {
+const Loading = () => {
   const noCategories: { id: string; name: string; createdAt: Date }[] = []
   return (
     <div className='space-y-4'>
@@ -34,4 +34,4 @@ const loading = () => {
   )
 }
 
-export default loading
+export default Loading

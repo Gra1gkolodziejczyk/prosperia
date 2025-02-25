@@ -5,9 +5,10 @@ import AdminUserSelectButton from './AdminUserSelectButton'
 
 type AdminUserTableProps = {
   users: UserType[]
+  userId: string
 }
 
-const AdminUserTable = ({ users }: AdminUserTableProps) => {
+const AdminUserTable = ({ users, userId }: AdminUserTableProps) => {
   return (
     <Card className='px-4'>
       <Table className='mx-auto'>
@@ -33,7 +34,7 @@ const AdminUserTable = ({ users }: AdminUserTableProps) => {
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.role === 'superAdmin' ? 'super admin' : user.role}</TableCell>
               <TableCell>
-                <AdminUserSelectButton user={user} />
+                <AdminUserSelectButton user={user} userId={userId} />
               </TableCell>
             </TableRow>
           ))}

@@ -1,22 +1,28 @@
+import { toast } from 'sonner'
+import { Shield, ShieldCheck, ShieldX } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { changeUserRole } from '@/src/actions/user.action'
 import { UserType } from '@/src/interfaces/user'
 import { roleSchema } from '@/src/lib/schemas'
-import { Shield, ShieldCheck, ShieldX } from 'lucide-react'
 
 type AdminUserChangeRoleButtonProps = {
   user: UserType
+  userId: string
 }
 
-const AdminUserChangeRoleButton = ({ user }: AdminUserChangeRoleButtonProps) => {
+const AdminUserChangeRoleButton = ({ user, userId }: AdminUserChangeRoleButtonProps) => {
   const roles = roleSchema.Values
 
   const onChangeRole = async (role: string) => {
-    const resp = await changeUserRole(user.id, role)
-    if (resp) {
-      console.log('Role Changed Successfully')
+    if (user.id === userId) {
+      toast.error('Vous ne pouvez pas changer votre propre rôle')
     } else {
-      console.log('Error Changing Role')
+      const resp = await changeUserRole(user.id, role)
+      if (resp.success) {
+        toast.success(resp.message)
+      } else {
+        toast.error(resp.message)
+      }
     }
   }
 

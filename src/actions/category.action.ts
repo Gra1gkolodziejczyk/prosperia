@@ -16,14 +16,15 @@ export const createCategory = async (name: string) => {
           createdAt: new Date()
         })
         .returning()
-      newCategory[0].name = newCategory[0].name.replace(/__SPACE__/g, ' ')
       revalidateTag('category')
-      return newCategory[0]
+      if (newCategory) {
+        return { success: true, message: 'La catégorie a été créée avec succès' }
+      }
     } catch (error) {
       console.log(`Error Creating Category: ${error}`)
     }
   }
-  return []
+  return { success: false, message: 'Erreur lors de la création de la catégorie' }
 }
 
 export const deleteCategory = async (id: string) => {
@@ -31,10 +32,10 @@ export const deleteCategory = async (id: string) => {
     try {
       await db.delete(category).where(eq(category.id, id)).returning()
       revalidateTag('category')
-      return true
+      return { success: true, message: 'La catégorie a été supprimée avec succès' }
     } catch (error) {
       console.log(`Error Deleting Category: ${error}`)
     }
   }
-  return false
+  return { success: false, message: 'Erreur lors de la suppression de la catégorie' }
 }
