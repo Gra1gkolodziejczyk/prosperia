@@ -4,8 +4,11 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { redirect } from 'next/navigation'
 import { getBlogBySlug } from '../blog.fetch'
+import { headers } from 'next/headers'
 
 const BlogDetailPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const userAgent = (await headers()).get('user-agent') || ''
+  const isMobile = /mobile|android|iphone|ipad/i.test(userAgent)
   const slug = (await params).slug
   if (!slug) {
     redirect('/')
@@ -15,12 +18,14 @@ const BlogDetailPage = async ({ params }: { params: Promise<{ slug: string }> })
       redirect('/')
     } else {
       return (
-        <div className='container mx-auto p-4'>
-          <Link href='/dashboard/blog'>
-            <Button variant='outline' className='mb-4'>
-              ← Retour
-            </Button>
-          </Link>
+        <div className='container mx-auto p-4 mt-16'>
+          {!isMobile && (
+            <Link href='/dashboard/blog'>
+              <Button variant='outline' className='mb-4'>
+                ← Retour
+              </Button>
+            </Link>
+          )}
           <article className='prose lg:prose-xl mx-auto'>
             <h1 className='text-3xl font-bold mb-4'>{blog.title}</h1>
             <div className='flex flex-wrap gap-2 my-4'>
