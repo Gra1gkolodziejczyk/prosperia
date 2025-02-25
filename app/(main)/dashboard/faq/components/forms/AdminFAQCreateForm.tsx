@@ -26,6 +26,8 @@ const AdminFAQCreateForm = ({ onClick }: AdminFAQCreateFormProps) => {
     }
   })
 
+  const { isSubmitting } = form.formState
+
   const onSubmit = async (values: z.infer<typeof formFAQSchema>) => {
     const verifyValues = formFAQSchema.safeParse(values)
     const verifyPage = pageEnumSchema.safeParse(selectedPage)
@@ -87,7 +89,9 @@ const AdminFAQCreateForm = ({ onClick }: AdminFAQCreateFormProps) => {
           )}
         />
         <div className='flex justify-end'>
-          <Button type='submit'>Ajouter</Button>
+          <Button type='submit' disabled={isSubmitting}>
+            Ajouter
+          </Button>
         </div>
       </form>
     </Form>

@@ -28,6 +28,8 @@ const AdminFAQUpdateForm = ({ faq, onClose }: AdminFAQUpdateFormProps) => {
     }
   })
 
+  const { isSubmitting } = form.formState
+
   const onSubmit = async (values: z.infer<typeof formFAQSchema>) => {
     const verifyValues = formFAQSchema.safeParse(values)
     const verifyPage = pageEnumSchema.safeParse(selectedPage)
@@ -92,7 +94,9 @@ const AdminFAQUpdateForm = ({ faq, onClose }: AdminFAQUpdateFormProps) => {
           )}
         />
         <div className='flex justify-end'>
-          <Button type='submit'>Modifier</Button>
+          <Button type='submit' disabled={isSubmitting}>
+            Modifier
+          </Button>
         </div>
       </form>
     </Form>

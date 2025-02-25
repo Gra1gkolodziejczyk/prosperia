@@ -31,6 +31,8 @@ const AdminInvitationCreateForm = ({ onClose }: AdminInvitationCreateDialogProps
     }
   })
 
+  const { isSubmitting } = form.formState
+
   const onSubmit = async (values: z.infer<typeof formInvitSchema>) => {
     const verifyValues = formInvitSchema.safeParse(values)
     if (verifyValues.success) {
@@ -142,7 +144,7 @@ const AdminInvitationCreateForm = ({ onClose }: AdminInvitationCreateDialogProps
             </FormItem>
           )}
         />
-        <Button variant='default' type='submit'>
+        <Button variant='default' type='submit' disabled={isSubmitting}>
           Créer une Invitation
         </Button>
       </form>

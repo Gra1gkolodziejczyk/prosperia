@@ -24,6 +24,8 @@ const AdminCategoryCreateForm = ({ onClose, categories }: AdminCategoryCreateFor
     }
   })
 
+  const { isSubmitting } = form.formState
+
   const onSubmit = async (values: z.infer<typeof categoryFormSchema>) => {
     const verifyBody = categoryFormSchema.safeParse(values)
     if (verifyBody.success) {
@@ -65,7 +67,7 @@ const AdminCategoryCreateForm = ({ onClose, categories }: AdminCategoryCreateFor
             </FormItem>
           )}
         />
-        <Button variant='default' type='submit'>
+        <Button variant='default' type='submit' disabled={isSubmitting}>
           Créer une Catégorie
         </Button>
       </form>
