@@ -15,7 +15,7 @@ export const pageEnumSchema = z.enum(
     'reduire-ir',
     'repreneur',
     'investisseur',
-    'cedant',
+    'cedants',
     'partenaire',
     'comment-ca-marche'
   ],

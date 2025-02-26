@@ -42,7 +42,7 @@ const BlogAdminDetailPage = async ({ params }: { params: Promise<{ id: string }>
                     alt={blog.title}
                     width={800}
                     height={400}
-                    priority={true}
+                    priority
                     className='object-cover rounded-lg border border-gray-300'
                   />
                 </div>

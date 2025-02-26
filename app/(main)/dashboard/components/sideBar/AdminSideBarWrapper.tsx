@@ -10,7 +10,7 @@ type AdminSideBarClientProps = {
 
 const SideBarWrapper = ({ role }: AdminSideBarClientProps) => {
   return (
-    <SidebarProvider className='bg-red-500 w-min'>
+    <SidebarProvider className='w-min'>
       <AdminSideBar role={role} />
       <AdminSideBarTrigger />
     </SidebarProvider>
