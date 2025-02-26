@@ -34,28 +34,28 @@ export default function Hero() {
               </Link>
             </div>
             <div className='grid grid-cols-2 gap-4 md:grid-cols-4'>
-              <Card className='backdrop-blur-sm border-0'>
+              <Card className='border-0'>
                 <CardContent className='pt-6 text-center'>
-                  <div className='text-3xl font-bold mb-2'>150k</div>
-                  <p className='text-sm'>emplois disparaissent chaque année</p>
+                  <div className='text-primary text-3xl font-bold mb-2'>150k</div>
+                  <p className='text-primary text-sm'>emplois disparaissent chaque année</p>
                 </CardContent>
               </Card>
               <Card className='backdrop-blur-sm border-0'>
                 <CardContent className='pt-6 text-center'>
-                  <div className='text-3xl font-bold mb-2'>36%</div>
-                  <p className='text-sm '>des dirigeants de PME ont plus de 60 ans</p>
+                  <div className='text-primary text-3xl font-bold mb-2'>36%</div>
+                  <p className='text-primary text-sm'>des dirigeants de PME ont plus de 60 ans</p>
                 </CardContent>
               </Card>
               <Card className='backdrop-blur-sm border-0'>
                 <CardContent className='pt-6 text-center'>
-                  <div className='text-3xl font-bold mb-2'>9Mds€</div>
-                  <p className='text-sm '>investis dans le capital transmission en 2024</p>
+                  <div className='text-primary text-3xl font-bold mb-2'>9Mds€</div>
+                  <p className='text-primary text-sm '>investis dans le capital transmission en 2024</p>
                 </CardContent>
               </Card>
               <Card className='backdrop-blur-sm border-0'>
                 <CardContent className='pt-6 text-center'>
-                  <div className='text-3xl font-bold mb-2'>5%</div>
-                  <p className='text-sm'>proviennent d&apos;investisseurs individuels</p>
+                  <div className='text-primary text-3xl font-bold mb-2'>5%</div>
+                  <p className='text-primary text-sm'>proviennent d&apos;investisseurs individuels</p>
                 </CardContent>
               </Card>
             </div>

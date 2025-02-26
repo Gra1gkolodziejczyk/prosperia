@@ -70,7 +70,7 @@ export const FormMessage = () => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
             {error && (
-              <Alert variant='destructive'>
+              <Alert className='bg-destructive text-white border-destructive' variant='destructive'>
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
@@ -80,7 +80,7 @@ export const FormMessage = () => {
                 name='firstName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='text-sm font-medium'>Prenom</FormLabel>
+                    <FormLabel className='text-primary text-sm font-medium'>Prenom</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -96,7 +96,7 @@ export const FormMessage = () => {
                 name='lastName'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className='text-sm font-medium'>Nom</FormLabel>
+                    <FormLabel className='text-primary text-sm font-medium'>Nom</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -113,7 +113,7 @@ export const FormMessage = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-sm font-medium'>Email</FormLabel>
+                  <FormLabel className='text-primary text-sm font-medium'>Email</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -129,7 +129,7 @@ export const FormMessage = () => {
               name='topic'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-sm font-medium'>Sujet</FormLabel>
+                  <FormLabel className='text-primary text-sm font-medium'>Sujet</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -145,7 +145,7 @@ export const FormMessage = () => {
               name='message'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className='text-sm font-medium'>Message</FormLabel>
+                  <FormLabel className='text-primary text-sm font-medium'>Message</FormLabel>
                   <FormControl>
                     <Textarea
                       {...field}

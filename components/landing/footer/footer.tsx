@@ -4,7 +4,7 @@ import logo from '@/public/logo.webp'
 
 export default function Footer() {
   return (
-    <footer className='w-full py-12'>
+    <footer className='w-full py-12 bg-primary text-white'>
       <div className='container px-4 mx-auto'>
         <div className='grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-5'>
           {/* Logo et Description */}
@@ -13,10 +13,6 @@ export default function Footer() {
               <Image src={logo} alt='Logo' width={32} height={32} />
               <span className='font-bold'>Prosperia</span>
             </Link>
-            <p className='text-sm mb-4 max-w-sm'>
-              Prosperia vous accompagne dans la gestion de votre patrimoine avec des solutions innovantes et
-              personnalisées.
-            </p>
           </div>
 
           {/* Liens Rapides */}
@@ -29,17 +25,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='/blog' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href='/qui-sommes-nous' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   Qui sommes-nous ?
                 </Link>
               </li>
               <li>
-                <Link href='/faq' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   FAQ
                 </Link>
               </li>
@@ -51,22 +47,22 @@ export default function Footer() {
             <h3 className='font-semibold mb-3'>Légal</h3>
             <ul className='space-y-2'>
               <li>
-                <Link href='/mentions-legales' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   Mentions légales
                 </Link>
               </li>
               <li>
-                <Link href='/politique-confidentialite' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   Politique de confidentialité
                 </Link>
               </li>
               <li>
-                <Link href='/cgv' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   CGV
                 </Link>
               </li>
               <li>
-                <Link href='/cookies' className='text-sm'>
+                <Link href='/' className='text-sm'>
                   Cookies
                 </Link>
               </li>

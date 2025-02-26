@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import logo from '@/public/logo.webp'
+import logo from '@/public/Prosperia_Logo-Principal-blanc.svg'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ChevronDown, Menu } from 'lucide-react'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
@@ -13,11 +13,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='fixed top-0 w-full h-16 z-50'>
+    <div className='fixed top-0 w-full h-16 z-50 bg-primary text-white'>
       <div className='flex items-center justify-between h-full mx-9'>
         <Link href='/' className='flex items-center gap-2'>
-          <Image src={logo} alt='Logo' width={32} height={32} />
-          <span className='font-bold text-foreground'>Prosperia</span>
+          <Image src={logo} alt='Logo' width={150} height={150} />
         </Link>
 
         <div className='flex items-center gap-6'>
@@ -33,12 +32,12 @@ export default function Navbar() {
                 <Link href='/investir/prime'>
                   <DropdownMenuItem className='cursor-pointer'>Prime</DropdownMenuItem>
                 </Link>
-                <Link href='/investir/investir-avec-son-pea'>
+                {/* <Link href='/investir/investir-avec-son-pea'>
                   <DropdownMenuItem className='cursor-pointer'>Investir avec son PEA</DropdownMenuItem>
-                </Link>
-                <Link href='/investir/reduire-son-ir'>
+                </Link> */}
+                {/* <Link href='/investir/reduire-son-ir'>
                   <DropdownMenuItem className='cursor-pointer'>Réduire son IR</DropdownMenuItem>
-                </Link>
+                </Link> */}
               </DropdownMenuContent>
             </DropdownMenu>
 
@@ -53,7 +52,7 @@ export default function Navbar() {
                 <Link href='/vous-etes/investisseurs'>
                   <DropdownMenuItem className='cursor-pointer'>Investisseurs</DropdownMenuItem>
                 </Link>
-                <Link href='/vous-etes/cedant'>
+                <Link href='/vous-etes/cedants'>
                   <DropdownMenuItem className='cursor-pointer'>Cédant</DropdownMenuItem>
                 </Link>
                 <Link href='/vous-etes/partenaires'>
@@ -116,7 +115,7 @@ export default function Navbar() {
                   <Link href='/vous-etes/investisseurs' className='' onClick={() => setIsOpen(false)}>
                     Investisseurs
                   </Link>
-                  <Link href='/vous-etes/cedant' className='' onClick={() => setIsOpen(false)}>
+                  <Link href='/vous-etes/cedants' className='' onClick={() => setIsOpen(false)}>
                     Cédant
                   </Link>
                   <Link href='/vous-etes/partenaires' className='' onClick={() => setIsOpen(false)}>
@@ -155,11 +154,11 @@ export default function Navbar() {
 
           <div className='flex items-center gap-4'>
             <div className='hidden nav:flex items-center gap-4'>
-              <Link href='/sign-in'>
-                <Button className='text-sm'>Se connecter</Button>
+              <Link href='/'>
+                <Button className='bg-card hover:bg-card/30 text-sm'>Se connecter</Button>
               </Link>
-              <Link href='/sign-up'>
-                <Button className='text-sm'>Créer un compte</Button>
+              <Link href='/'>
+                <Button className='bg-card hover:bg-card/30 text-sm'>Créer un compte</Button>
               </Link>
             </div>
           </div>

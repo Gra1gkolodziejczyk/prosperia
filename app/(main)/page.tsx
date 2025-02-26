@@ -4,7 +4,7 @@ import HowItWorks from '@/components/landing/how-it-works/how-it-works'
 import InvestmentStrategies from '@/components/landing/investment-strategies/investment-strategies'
 import FAQ from '@/components/landing/faq/faq'
 import { Metadata } from 'next'
-import { redirect } from 'next/navigation'
+// import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Prosperia | La plateforme pour investir dans les PME rentables',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
-  redirect('https://hub.prosperia-invest.com/fr/prosperia')
+  // redirect('https://hub.prosperia-invest.com/fr/prosperia')
   return (
     <main>
       <Hero />

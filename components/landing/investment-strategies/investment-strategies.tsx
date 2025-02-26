@@ -15,30 +15,32 @@ export default function InvestmentStrategies() {
           <div className='grid gap-8 sm:grid-cols-2 w-full max-w-5xl mx-auto'>
             <Card className='flex flex-col'>
               <CardHeader className='flex-none'>
-                <CardTitle className='text-2xl'>Prosperia Capital-Développement</CardTitle>
+                <CardTitle className='text-background font-bold text-2xl'>Prosperia Capital-Développement</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col flex-grow'>
                 <div className='space-y-6'>
                   <div className='space-y-4'>
-                    <div className='flex justify-between items-center'>
-                      <span className=''>Objectif</span>
-                      <span>Financer la transmission et la croissance externe des PME</span>
+                    <div className='flex gap-4 text-center items-start'>
+                      <span className='text-primary'>Objectif</span>
+                      <span className='text-primary text-start'>
+                        Financer la transmission et la croissance externe des PME
+                      </span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Durée</span>
-                      <span>3 à 5 ans</span>
+                      <span className='text-primary'>Durée</span>
+                      <span className='text-primary'>3 à 5 ans</span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Instrument</span>
-                      <span>Obligations</span>
+                      <span className='text-primary'>Instrument</span>
+                      <span className='text-primary'>Obligations</span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Taux d&apos;intérêt</span>
-                      <span>9% à 12%/an*</span>
+                      <span className='text-primary'>Taux d&apos;intérêt</span>
+                      <span className='text-primary'>9% à 12%/an*</span>
                     </div>
                   </div>
                   <Link href='/investir/capital-developpement' className='block mt-auto'>
-                    <Button className='w-full' variant='outline'>
+                    <Button className='w-full hover:bg-primary/70' variant='default'>
                       En savoir plus
                     </Button>
                   </Link>
@@ -48,30 +50,30 @@ export default function InvestmentStrategies() {
 
             <Card className='flex flex-col'>
               <CardHeader className='flex-none'>
-                <CardTitle className='text-2xl'>Prosperia Prime</CardTitle>
+                <CardTitle className='text-background font-bold text-2xl'>Prosperia Prime</CardTitle>
               </CardHeader>
               <CardContent className='flex flex-col flex-grow'>
                 <div className='flex flex-col flex-grow'>
                   <div className='space-y-4'>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Objectif</span>
-                      <span>Co-investir aux côtés des plus grands fonds</span>
+                      <span className='text-primary'>Objectif</span>
+                      <span className='text-primary'>Co-investir aux côtés des plus grands fonds</span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Durée</span>
-                      <span>3 à 7 ans</span>
+                      <span className='text-primary'>Durée</span>
+                      <span className='text-primary'>3 à 7 ans</span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>Instrument</span>
-                      <span>Actions</span>
+                      <span className='text-primary'>Instrument</span>
+                      <span className='text-primary'>Actions</span>
                     </div>
                     <div className='flex justify-between items-center'>
-                      <span className=''>TRI</span>
-                      <span>x2 à x3 (20 à 25%)*</span>
+                      <span className='text-primary'>TRI</span>
+                      <span className='text-primary'>x2 à x3 (20 à 25%)*</span>
                     </div>
                   </div>
                   <Link href='/investir/prime' className='block mt-auto'>
-                    <Button className='w-full' variant='outline'>
+                    <Button className='w-full hover:bg-primary/70' variant='default'>
                       En savoir plus
                     </Button>
                   </Link>

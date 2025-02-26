@@ -18,10 +18,10 @@ export default function HowItWorks() {
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
                   <div className='flex items-center justify-center w-12 h-12 rounded-full'>
-                    <UserPlus className='h-6 w-6' />
+                    <UserPlus className='text-background h-12 w-12' />
                   </div>
-                  <h3 className='text-xl font-bold text-center'>Créez votre compte</h3>
-                  <p className='text-muted-foreground text-center'>
+                  <h3 className='text-primary text-xl font-bold text-center'>Créez votre compte</h3>
+                  <p className='text-primary text-center'>
                     En quelques minutes, renseignez votre profil et effectuez le processus KYC (Know Your Customer), une
                     obligation légale garantissant un cadre sécurisé et conforme à la réglementation.
                   </p>
@@ -32,10 +32,10 @@ export default function HowItWorks() {
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
                   <div className='flex items-center justify-center w-12 h-12 rounded-full'>
-                    <ClipboardCheck className='h-6 w-6' />
+                    <ClipboardCheck className='text-background h-12 w-12' />
                   </div>
-                  <h3 className='text-xl font-bold text-center'>Découvrez des opportunités exclusives</h3>
-                  <p className='text-muted-foreground text-center'>
+                  <h3 className='text-primary text-xl font-bold text-center'>Découvrez des opportunités exclusives</h3>
+                  <p className='text-primary text-center'>
                     Accédez à des dossiers détaillés avec les indicateurs clés : chiffre d&apos;affaires, rentabilité,
                     business model, perspectives de croissance, structure financière.
                   </p>
@@ -46,10 +46,10 @@ export default function HowItWorks() {
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
                   <div className='flex items-center justify-center w-12 h-12 rounded-full'>
-                    <LineChart className='h-6 w-6' />
+                    <LineChart className='text-background h-12 w-12' />
                   </div>
-                  <h3 className='text-xl font-bold text-center'>Suivez vos investissements</h3>
-                  <p className='text-muted-foreground text-center'>
+                  <h3 className='text-primary text-xl font-bold text-center'>Suivez vos investissements</h3>
+                  <p className='text-primary text-center'>
                     Gérez votre portefeuille depuis un tableau de bord individualisé et recevez des reportings
                     trimestriels pour suivre l&apos;évolution des entreprises financées.
                   </p>

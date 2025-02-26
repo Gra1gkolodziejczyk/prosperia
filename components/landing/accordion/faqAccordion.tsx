@@ -45,9 +45,9 @@ export const FaqAccordions = ({ page }: FAQAccordionsProps) => {
     )
   } else {
     return (
-      <Accordion type='single' collapsible className='mx-auto w-[69%] space-y-4'>
+      <Accordion type='single' collapsible className='mx-auto w-[69%] text-background space-y-4'>
         {faqs.map(faq => (
-          <AccordionItem key={faq.id} value={faq.id} className='border rounded-lg px-6'>
+          <AccordionItem key={faq.id} value={faq.id} className='bg-primary border rounded-lg px-6'>
             <AccordionTrigger className='text-lg font-semibold py-6'>{faq.question}</AccordionTrigger>
             <AccordionContent className='pb-6'>
               <div dangerouslySetInnerHTML={{ __html: faq.answer.replace(/\n/g, '<br>') }} />

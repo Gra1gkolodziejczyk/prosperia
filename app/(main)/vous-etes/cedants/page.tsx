@@ -1,8 +1,8 @@
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { FaqAccordions } from '@/components/landing/accordion/faqAccordion';
+import React from 'react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { FaqAccordions } from '@/components/landing/accordion/faqAccordion'
 
 const Cedants = () => {
   return (
@@ -12,9 +12,9 @@ const Cedants = () => {
         <h1 className='text-4xl md:text-5xl font-bold leading-tight'>
           Cédez votre entreprise en toute sérénité avec Prosperia
         </h1>
-        <p className='text-xl text-muted-foreground max-w-3xl mx-auto'>
-          Un processus structuré pour trouver le bon repreneur, sécuriser la
-          transmission et garantir la pérennité de votre entreprise.
+        <p className='text-xl text-primary max-w-3xl mx-auto'>
+          Un processus structuré pour trouver le bon repreneur, sécuriser la transmission et garantir la pérennité de
+          votre entreprise.
         </p>
         <Button size='lg' className='mt-8'>
           Parler avec un conseiller
@@ -24,30 +24,26 @@ const Cedants = () => {
         <div className='grid grid-cols-1 md:grid-cols-4 gap-8 mt-16'>
           <Card>
             <CardContent className='pt-6'>
-              <div className='text-3xl font-bold mb-2'>50+</div>
-              <p className='text-muted-foreground'>PME accompagnées</p>
+              <div className='text-3xl font-bold mb-2 text-primary'>50+</div>
+              <p className='text-primary'>PME accompagnées</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className='pt-6'>
-              <div className='text-3xl font-bold mb-2'>100M€+</div>
-              <p className='text-muted-foreground'>de financements levés</p>
+              <div className='text-3xl font-bold mb-2 text-primary'>100M€+</div>
+              <p className='text-primary'>de financements levés</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className='pt-6'>
-              <div className='text-3xl font-bold mb-2'>99%</div>
-              <p className='text-muted-foreground'>
-                des cessions financées et finalisées
-              </p>
+              <div className='text-3xl font-bold mb-2 text-primary'>99%</div>
+              <p className='text-primary'>des cessions financées et finalisées</p>
             </CardContent>
           </Card>
           <Card>
             <CardContent className='pt-6'>
-              <div className='text-3xl font-bold mb-2'>500+</div>
-              <p className='text-muted-foreground'>
-                repreneurs sérieux et qualifiés
-              </p>
+              <div className='text-3xl font-bold mb-2 text-primary'>500+</div>
+              <p className='text-primary'>repreneurs sérieux et qualifiés</p>
             </CardContent>
           </Card>
         </div>
@@ -61,39 +57,34 @@ const Cedants = () => {
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           <Card>
             <CardHeader>
-              <CardTitle className='text-xl'>
-                Sélection des repreneurs
-              </CardTitle>
+              <CardTitle className='text-xl text-secondary'>Sélection des repreneurs</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className='text-muted-foreground'>
-                Nous identifions et validons les candidats selon leur profil,
-                leur capacité financière et leur adéquation avec votre vision
-                d&apos;entreprise.
+              <p className='text-primary'>
+                Nous identifions et validons les candidats selon leur profil, leur capacité financière et leur
+                adéquation avec votre vision d&apos;entreprise.
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className='text-xl'>Financement optimisé</CardTitle>
+              <CardTitle className='text-xl text-secondary'>Financement optimisé</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className='text-muted-foreground'>
-                Grâce à notre réseau d&apos;investisseurs et de partenaires
-                bancaires, nous trouvons les solutions financières adaptées pour
-                maximiser votre valorisation.
+              <p className='text-primary'>
+                Grâce à notre réseau d&apos;investisseurs et de partenaires bancaires, nous trouvons les solutions
+                financières adaptées pour maximiser votre valorisation.
               </p>
             </CardContent>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle className='text-xl'>Accompagnement complet</CardTitle>
+              <CardTitle className='text-xl text-secondary'>Accompagnement complet</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className='text-muted-foreground'>
-                De l&apos;évaluation de votre entreprise à la finalisation du
-                deal, nous vous guidons à chaque étape pour garantir une
-                transmission en toute confiance.
+              <p className='text-primary'>
+                De l&apos;évaluation de votre entreprise à la finalisation du deal, nous vous guidons à chaque étape
+                pour garantir une transmission en toute confiance.
               </p>
             </CardContent>
           </Card>
@@ -105,19 +96,15 @@ const Cedants = () => {
 
       {/* How it Works Section */}
       <section>
-        <h2 className='text-3xl font-bold text-center mb-12'>
-          Vendre votre entreprise au bon repreneur, au bon prix
-        </h2>
+        <h2 className='text-3xl font-bold text-center mb-12'>Vendre votre entreprise au bon repreneur, au bon prix</h2>
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
           <Card>
             <CardHeader>
               <Badge className='w-fit mb-4 text-white'>Étape 1</Badge>
-              <CardTitle className='text-xl'>
-                Valorisation juste et solide
-              </CardTitle>
+              <CardTitle className='text-xl text-secondary'>Valorisation juste et solide</CardTitle>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <ul className='space-y-2 text-muted-foreground'>
+              <ul className='space-y-2 text-primary'>
                 <li>✓ Analyse approfondie de vos données financières</li>
                 <li>✓ Benchmark sectoriel et multiples comparables</li>
                 <li>✓ Documentation claire pour les acquéreurs</li>
@@ -127,12 +114,10 @@ const Cedants = () => {
           <Card>
             <CardHeader>
               <Badge className='w-fit mb-4 text-white'>Étape 2</Badge>
-              <CardTitle className='text-xl'>
-                Sélection du repreneur idéal
-              </CardTitle>
+              <CardTitle className='text-xl text-secondary'>Sélection du repreneur idéal</CardTitle>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <ul className='space-y-2 text-muted-foreground'>
+              <ul className='space-y-2 text-primary'>
                 <li>✓ Base de repreneurs qualifiés</li>
                 <li>✓ Matching personnalisé selon vos critères</li>
                 <li>✓ Validation rigoureuse des candidats</li>
@@ -142,10 +127,10 @@ const Cedants = () => {
           <Card>
             <CardHeader>
               <Badge className='w-fit mb-4 text-white'>Étape 3</Badge>
-              <CardTitle className='text-xl'>Accompagnement complet</CardTitle>
+              <CardTitle className='text-xl text-secondary'>Accompagnement complet</CardTitle>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <ul className='space-y-2 text-muted-foreground'>
+              <ul className='space-y-2 text-primary'>
                 <li>✓ Négociation du protocole</li>
                 <li>✓ Gestion du calendrier</li>
                 <li>✓ Suivi post-cession</li>
@@ -154,42 +139,34 @@ const Cedants = () => {
           </Card>
         </div>
         <div className='text-center mt-8'>
-          <Button size='lg'>
-            Être accompagné dans la vente de mon entreprise
-          </Button>
+          <Button size='lg'>Être accompagné dans la vente de mon entreprise</Button>
         </div>
       </section>
 
       {/* FAQ Section */}
       <section>
-        <h2 className='text-3xl font-bold text-center mb-12'>
-          Vous avez des questions ? Nous avons les réponses.
-        </h2>
-        <FaqAccordions page='cedant' />
+        <h2 className='text-3xl font-bold text-center mb-12'>Vous avez des questions ? Nous avons les réponses.</h2>
+        <FaqAccordions page='cedants' />
       </section>
 
       {/* Final CTA */}
       <section className='text-center space-y-6'>
-        <h2 className='text-3xl font-bold'>
-          Vous souhaitez céder votre entreprise en toute sérénité ?
-        </h2>
+        <h2 className='text-3xl font-bold'>Vous souhaitez céder votre entreprise en toute sérénité ?</h2>
         <Button size='lg'>Parler avec un conseiller</Button>
         <div className='flex justify-center gap-8 mt-8'>
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground'>🔒 Processus sécurisé</span>
+            <span className='text-primary'>🔒 Processus sécurisé</span>
           </div>
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground'>✨ Repreneurs fiables</span>
+            <span className='text-primary'>✨ Repreneurs fiables</span>
           </div>
           <div className='flex items-center gap-2'>
-            <span className='text-muted-foreground'>
-              👥 Accompagnement expert
-            </span>
+            <span className='text-primary'>👥 Accompagnement expert</span>
           </div>
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Cedants;
+export default Cedants

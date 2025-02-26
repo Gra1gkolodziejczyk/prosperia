@@ -15,12 +15,12 @@ export default function WhyChoose() {
             </p>
           </div>
           <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-4 w-full max-w-7xl mx-auto'>
-            <Card className=''>
+            <Card>
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
-                  <Building2 className='h-12 w-12' />
-                  <h3 className='text-xl font-bold text-center'>Le Leverage Buy-Out (LBO)</h3>
-                  <p className='text-center'>
+                  <Building2 className='text-background h-12 w-12' />
+                  <h3 className='text-primary text-xl font-bold text-center'>Le Leverage Buy-Out (LBO)</h3>
+                  <p className='text-primary text-center'>
                     Le LBO est un rachat d&apos;entreprise par endettement. Avec Prosperia, vous investissez aux côtés
                     de la Banque.
                   </p>
@@ -30,9 +30,9 @@ export default function WhyChoose() {
             <Card className=''>
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
-                  <PiggyBank className='h-12 w-12' />
-                  <h3 className='text-xl font-bold text-center'>Un meilleur équilibre risque/rendement</h3>
-                  <p className='text-center'>
+                  <PiggyBank className='text-background h-12 w-12' />
+                  <h3 className='text-primary text-xl font-bold text-center'>Un meilleur équilibre risque/rendement</h3>
+                  <p className='text-primary text-center'>
                     Investir en LBO c&apos;est partager le risque avec une Banque qui finance 50% à 80% de
                     l&apos;opération, dans une PME rentable.
                   </p>
@@ -42,9 +42,9 @@ export default function WhyChoose() {
             <Card className=''>
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
-                  <TrendingUp className='h-12 w-12 ' />
-                  <h3 className='text-xl font-bold text-center'>Une classe d&apos;actif résiliente</h3>
-                  <p className='text-center'>
+                  <TrendingUp className='text-background h-12 w-12 ' />
+                  <h3 className='text-primary text-xl font-bold text-center'>Une classe d&apos;actif résiliente</h3>
+                  <p className='text-primary text-center'>
                     Les investisseurs professionnels augmentent leurs allocations sur le Capital-Développement et le
                     Capital-Transmission.
                   </p>
@@ -54,9 +54,11 @@ export default function WhyChoose() {
             <Card className=''>
               <CardContent className='pt-6'>
                 <div className='flex flex-col items-center space-y-4'>
-                  <Users className='h-12 w-12 ' />
-                  <h3 className='text-xl font-bold text-center'>Réservée aux investisseurs institutionnels</h3>
-                  <p className='text-center'>
+                  <Users className='text-background h-12 w-12 ' />
+                  <h3 className='text-primary text-xl font-bold text-center'>
+                    Réservée aux investisseurs institutionnels
+                  </h3>
+                  <p className='text-primary text-center'>
                     Seulement 5% des fonds investis en LBO proviennent d&apos;investisseurs privés avec des tickets
                     d&apos;entrée entre 100 000€ et 1M€.
                   </p>

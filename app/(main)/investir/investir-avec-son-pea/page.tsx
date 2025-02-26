@@ -1,5 +1,5 @@
-const InvestirAvecSonPEA = () => {
-  return <div>Investir avec son PEA</div>;
-};
+// const InvestirAvecSonPEA = () => {
+//   return <div>Investir avec son PEA</div>;
+// };
 
-export default InvestirAvecSonPEA;
+// export default InvestirAvecSonPEA;
