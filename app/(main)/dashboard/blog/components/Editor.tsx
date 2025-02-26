@@ -171,7 +171,6 @@ export const Editor = ({ content, onChange }: { content?: Content; onChange: (co
           className='p-2 rounded-md hover:bg-gray-200'>
           <UploadButton
             appearance={{
-              button: 'text-[#4C5E67]',
               container: 'w-5 h-5',
               allowedContent: 'hidden'
             }}
@@ -184,7 +183,7 @@ export const Editor = ({ content, onChange }: { content?: Content; onChange: (co
             }}
             content={{
               button() {
-                return <ImageIcon className='w-5 h-5' />
+                return <ImageIcon className='w-5 h-5' color='#4C5E67' />
               }
             }}
           />
