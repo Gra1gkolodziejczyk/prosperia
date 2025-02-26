@@ -1,7 +1,6 @@
 'use client'
 
 import StarterKit from '@tiptap/starter-kit'
-import { Content } from '@tiptap/core'
 import Link from '@tiptap/extension-link'
 import { useEditor, EditorContent } from '@tiptap/react'
 import TaskItem from '@tiptap/extension-task-item'
@@ -25,7 +24,7 @@ import {
 import { UploadButton } from './UploadButton'
 import { deleteImage } from '@/src/actions/fileupload.action'
 
-export const Editor = ({ content, onChange }: { content?: Content; onChange: (content: Content) => void }) => {
+export const Editor = ({ content, onChange }: { content?: string; onChange: (content: string) => void }) => {
   const handleImageDelete = (images: string[]) => {
     images.forEach(async img => {
       await deleteImage(img)

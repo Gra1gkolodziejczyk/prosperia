@@ -7,12 +7,7 @@ type AdminCreateSecondStepProps = {
 }
 
 const AdminCreateSecondStep = ({ article, setArticle }: AdminCreateSecondStepProps) => {
-  return (
-    <Editor
-      content={JSON.stringify(article.content)}
-      onChange={newContent => setArticle({ ...article, content: newContent?.toString() || '' })}
-    />
-  )
+  return <Editor content={article.content} onChange={content => setArticle({ ...article, content: content })} />
 }
 
 export default AdminCreateSecondStep
