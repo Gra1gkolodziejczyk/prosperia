@@ -1,4 +1,5 @@
 'use client'
+
 import StarterKit from '@tiptap/starter-kit'
 import { Content } from '@tiptap/core'
 import Link from '@tiptap/extension-link'
@@ -22,8 +23,15 @@ import {
   Underline as UnderlineIcon
 } from 'lucide-react'
 import { UploadButton } from './UploadButton'
+import { deleteImage } from '@/src/actions/fileupload.action'
 
 export const Editor = ({ content, onChange }: { content?: Content; onChange: (content: Content) => void }) => {
+  const handleImageDelete = (images: string[]) => {
+    images.forEach(async img => {
+      await deleteImage(img)
+    })
+  }
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -79,7 +87,25 @@ export const Editor = ({ content, onChange }: { content?: Content; onChange: (co
       }
     },
     content,
-    onUpdate: ({ editor }) => {
+    onUpdate: ({ editor, transaction }) => {
+      const currentImages = new Set<string>()
+      transaction.doc.descendants(node => {
+        if (node.type.name === 'image' && node.attrs.src) {
+          currentImages.add(node.attrs.src)
+        }
+      })
+      const previousImages = new Set<string>()
+      transaction.before.descendants(node => {
+        if (node.type.name === 'image' && node.attrs.src) {
+          previousImages.add(node.attrs.src)
+        }
+      })
+      const deletedImages = Array.from(previousImages).filter(img => !currentImages.has(img))
+      if (deletedImages.length > 0) {
+        deletedImages.forEach(img => {
+          handleImageDelete([img])
+        })
+      }
       onChange(editor.getHTML())
     },
     immediatelyRender: false

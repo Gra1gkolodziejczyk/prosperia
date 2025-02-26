@@ -61,7 +61,6 @@ const AdminCreateBlogUploadImage = ({ mainImage, onChangeImage }: AdminCreateBlo
           }}
           endpoint='blogImage'
           onClientUploadComplete={res => {
-            console.log(res)
             setImage(res?.[0].ufsUrl || null)
             onChangeImage(res?.[0]?.ufsUrl || '')
           }}
