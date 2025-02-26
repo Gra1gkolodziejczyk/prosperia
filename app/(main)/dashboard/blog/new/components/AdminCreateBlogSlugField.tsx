@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { Check, Pencil, X } from 'lucide-react'
+import { Check, Pencil, Save, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { isSlugAvailable } from '../../blog.fetch'
 
@@ -28,17 +28,15 @@ const AdminCreateBlogSlugField = ({ slug, onChangeSlug, title }: AdminCreateBlog
       const autoSlug = onGenerateSlug(title ?? '')
       if (autoSlug !== newSlug) {
         setNewSlug(autoSlug)
-        onChangeSlug(autoSlug)
         onCheckSlugIsAvailable(autoSlug)
       }
     }
-  }, [title, newSlug, onChangeSlug, slug])
+  }, [title, slug])
 
   const handleSlugChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedSlug = e.target.value
     const autoSlug = onGenerateSlug(updatedSlug)
     setNewSlug(autoSlug)
-    onChangeSlug(autoSlug)
     onCheckSlugIsAvailable(autoSlug)
   }
 
@@ -63,9 +61,16 @@ const AdminCreateBlogSlugField = ({ slug, onChangeSlug, title }: AdminCreateBlog
       <div className='flex items-center justify-between'>
         <Label htmlFor='slug'>Custom URL</Label>
         {!isEditing ? (
-          <Button variant='ghost' size='sm' onClick={() => setIsEditing(true)} className='h-8 px-2'>
-            <Pencil className='h-4 w-4' />
-          </Button>
+          <div>
+            {slug !== newSlug ? (
+              <Button variant='ghost' size='sm' onClick={onSaveSlug} className='h-8 px-2'>
+                <Save className='h-4 w-4' />
+              </Button>
+            ) : null}
+            <Button variant='ghost' size='sm' onClick={() => setIsEditing(true)} className='h-8 px-2'>
+              <Pencil className='h-4 w-4' />
+            </Button>
+          </div>
         ) : (
           <div className='flex gap-1'>
             <Button
